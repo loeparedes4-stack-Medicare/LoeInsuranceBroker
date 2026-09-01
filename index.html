@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101a20" />
+  <meta name="description" content="Personal Medicare Advantage and Medicare Part D guidance across Arizona in English and Spanish." />
+  <title>LOE Insurance Broker | Lucy Encarnación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0f171c;
+      --ink-2:#18252b;
+      --paper:#fffdf9;
+      --white:#fff;
+      --text:#152126;
+      --muted:#68757a;
+      --line:#e7eceb;
+      --coral:#ff4e5f;
+      --coral-deep:#dd2442;
+      --orange:#ff8c42;
+      --teal:#11b6a4;
+      --teal-deep:#0c8177;
+      --sky:#dff5f4;
+      --mint:#eaf8f1;
+      --lav:#f0ecff;
+      --rose:#fff0f2;
+      --sand:#fff4e8;
+      --blue:#eaf4ff;
+      --shadow:0 28px 70px rgba(18,42,48,.12);
+      --shadow-soft:0 14px 38px rgba(18,42,48,.08);
+      --radius-xl:38px;
+      --radius-lg:28px;
+      --radius-md:20px;
+      --container:1160px;
+      --serif:"DM Serif Display", Georgia, serif;
+      --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    button{font:inherit;cursor:pointer}
+    .container{width:min(calc(100% - 40px),var(--container));margin-inline:auto}
+    .section{padding:92px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.69rem;font-weight:800;text-transform:uppercase;letter-spacing:.17em;color:var(--teal-deep)}
+    .eyebrow::before{content:"";width:30px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--coral),var(--orange))}
+    .section-head{max-width:730px;margin-bottom:34px}
+    .section-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5vw,4.5rem);line-height:.98;letter-spacing:-.035em;margin:12px 0 16px}
+    .section-head p{font-size:1rem;line-height:1.75;color:var(--muted);margin:0;max-width:62ch}
+    .accent{color:var(--coral-deep);font-style:italic}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:60;background:rgba(15,23,28,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+    .brand-mark{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--coral),var(--orange));font-family:var(--serif);font-size:1.45rem;box-shadow:0 12px 30px rgba(255,78,95,.26)}
+    .brand-copy{display:flex;flex-direction:column;line-height:1}
+    .brand-copy strong{font-size:1rem;letter-spacing:.13em}
+    .brand-copy small{font-size:.55rem;letter-spacing:.2em;color:#b9c1c4;margin-top:6px}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links a{color:#d8dddf;text-decoration:none;font-size:.78rem;font-weight:700;transition:.2s}
+    .nav-links a:hover{color:#fff}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .lang-switch{display:flex;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.14);border-radius:999px}
+    .lang-switch button{border:0;background:transparent;color:#aeb7ba;padding:7px 10px;border-radius:999px;font-size:.7rem;font-weight:800}
+    .lang-switch button.active{background:#fff;color:#111}
+    .nav-book{border:0;border-radius:999px;background:linear-gradient(135deg,var(--coral),var(--coral-deep));color:#fff;padding:12px 18px;font-weight:800;box-shadow:0 10px 26px rgba(221,36,66,.23)}
+
+    /* Hero */
+    .hero{position:relative;padding:64px 0 60px;overflow:hidden;background:
+      radial-gradient(circle at 8% 14%,rgba(17,182,164,.13),transparent 23rem),
+      radial-gradient(circle at 88% 12%,rgba(255,78,95,.15),transparent 22rem),
+      linear-gradient(180deg,#fffdf9 0%,#fffaf5 100%)}
+    .hero::after{content:"";position:absolute;right:-170px;bottom:-230px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(17,182,164,.16);pointer-events:none}
+    .hero-shell{display:grid;grid-template-columns:1.06fr .94fr;gap:44px;align-items:stretch}
+    .hero-copy{padding:36px 0 24px;display:flex;flex-direction:column;justify-content:center}
+    .hero-copy h1{font-family:var(--serif);font-size:clamp(3.55rem,6.2vw,6rem);font-weight:400;line-height:.91;letter-spacing:-.045em;margin:17px 0 22px;max-width:780px}
+    .hero-copy .lead{font-size:1.05rem;line-height:1.75;color:var(--muted);max-width:63ch;margin:0}
+    .hero-copy .lead strong{color:var(--text)}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .btn{border:0;border-radius:999px;padding:14px 19px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;min-height:50px}
+    .btn-primary{background:linear-gradient(135deg,var(--coral),var(--coral-deep));color:#fff;box-shadow:0 14px 30px rgba(221,36,66,.24)}
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-soft{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .trust-points{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+    .trust-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.78);font-size:.72rem;font-weight:700;color:#536267}
+    .trust-pill::before{content:"✓";color:var(--teal);font-weight:900}
+
+    .hero-visual{position:relative;min-height:600px}
+    .hero-photo-wrap{position:absolute;inset:0 0 0 52px;border-radius:42px;overflow:hidden;background:var(--ink);box-shadow:0 38px 90px rgba(16,34,41,.20)}
+    .hero-photo-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,19,24,.78) 100%);z-index:1}
+    .hero-photo{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+    .hero-name{position:absolute;left:36px;right:36px;bottom:32px;z-index:2;color:#fff}
+    .hero-name strong{display:block;font-family:var(--serif);font-size:2rem;font-weight:400}
+    .hero-name span{display:block;color:#d8dfe1;font-size:.76rem;line-height:1.5;margin-top:5px}
+    .hero-float{position:absolute;left:0;top:72px;z-index:3;width:190px;padding:17px;border-radius:22px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+    .hero-float b{display:block;color:var(--coral-deep);font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+    .hero-float strong{font-family:var(--serif);font-size:1.38rem;font-weight:400;line-height:1.1}
+    .hero-float p{margin:7px 0 0;font-size:.69rem;line-height:1.5;color:var(--muted)}
+    .hero-orb{position:absolute;right:-18px;top:-15px;width:92px;height:92px;border-radius:28px;background:linear-gradient(145deg,var(--teal),#7ee2d7);transform:rotate(11deg);z-index:-1}
+
+    /* Options */
+    .options{background:#fff}
+    .options-shell{display:grid;grid-template-columns:.72fr 1.28fr;gap:28px;align-items:stretch}
+    .options-intro{background:var(--ink);color:#fff;border-radius:var(--radius-xl);padding:38px;position:relative;overflow:hidden}
+    .options-intro::after{content:"";position:absolute;right:-85px;bottom:-105px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(17,182,164,.48),rgba(17,182,164,.03) 67%,transparent 70%)}
+    .options-intro .eyebrow{color:#8de2d8}
+    .options-intro h2{font-family:var(--serif);font-size:clamp(2.6rem,4vw,4rem);font-weight:400;line-height:.98;margin:14px 0 16px}
+    .options-intro p{color:#b8c2c5;line-height:1.75;margin:0;max-width:45ch}
+    .option-stack{display:grid;gap:14px}
+    .option-card{border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;background:linear-gradient(145deg,#fff,#fbfffe);box-shadow:0 12px 34px rgba(16,46,50,.05);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+    .option-index{width:60px;height:60px;border-radius:20px;display:grid;place-items:center;background:var(--sky);color:var(--teal-deep);font-family:var(--serif);font-size:1.9rem}
+    .option-card:nth-child(2) .option-index{background:var(--rose);color:var(--coral-deep)}
+    .option-card h3{font-family:var(--serif);font-size:1.7rem;font-weight:400;margin:0 0 8px}
+    .option-card p{margin:0;color:var(--muted);line-height:1.65;font-size:.9rem}
+    .option-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+    .option-points span{padding:7px 10px;border-radius:999px;background:#f5f7f6;font-size:.68rem;font-weight:700;color:#536166}
+
+    /* Quick check */
+    .check{background:linear-gradient(180deg,#fffaf5,#fffdf9)}
+    .check-grid{display:grid;grid-template-columns:.76fr 1.24fr;gap:50px;align-items:start}
+    .check-copy h2{font-family:var(--serif);font-size:clamp(2.8rem,4.8vw,4.5rem);font-weight:400;line-height:.98;margin:13px 0 16px}
+    .check-copy p{color:var(--muted);line-height:1.75;max-width:48ch}
+    .quiz-card{background:#fff;border:1px solid var(--line);border-radius:32px;padding:28px;box-shadow:var(--shadow-soft)}
+    .question{padding:20px 0;border-bottom:1px solid #edf0ef}
+    .question:first-child{padding-top:0}
+    .question:last-of-type{border-bottom:0}
+    .question h3{font-size:.93rem;line-height:1.5;margin:0 0 13px}
+    .option-row{display:flex;flex-wrap:wrap;gap:8px}
+    .quiz-option{border:1px solid #dce4e3;background:#fff;color:#58666b;border-radius:999px;padding:9px 14px;font-size:.78rem;font-weight:800}
+    .quiz-option.active{background:var(--ink);border-color:var(--ink);color:#fff}
+    .quiz-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+    .quiz-note{font-size:.7rem;color:#849095;line-height:1.55;margin-top:13px}
+    .result{display:none;margin-top:16px;padding:17px;border-radius:18px;background:var(--mint);border:1px solid #ccefe4}
+    .result.show{display:block}
+    .result strong{display:block;color:#08685f;margin-bottom:5px}
+    .result p{margin:0;color:#49645f;font-size:.82rem;line-height:1.6}
+
+    /* Help */
+    .help{background:#fff}
+    .help-shell{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .help-card{border-radius:30px;padding:32px;min-height:250px;position:relative;overflow:hidden}
+    .help-card:first-child{background:linear-gradient(145deg,var(--mint),#f7fffb)}
+    .help-card:last-child{background:linear-gradient(145deg,var(--lav),#fbfaff)}
+    .help-card .num{font-family:var(--serif);font-size:2.3rem;color:var(--teal-deep)}
+    .help-card:last-child .num{color:#7456c9}
+    .help-card h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin:28px 0 9px}
+    .help-card p{margin:0;color:#60706e;line-height:1.65;font-size:.88rem;max-width:48ch}
+
+    /* Carriers */
+    .carriers{background:linear-gradient(180deg,#f3fbfa 0%,#fffdf9 100%)}
+    .carrier-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px;align-items:stretch}
+    .carrier-story{position:relative;min-height:570px;border-radius:38px;overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+    .carrier-story img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+    .carrier-story::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(10,23,27,.88) 100%)}
+    .carrier-quote{position:absolute;z-index:2;left:28px;right:28px;bottom:28px;color:#fff}
+    .carrier-quote .quote-mark{width:46px;height:46px;border-radius:15px;background:rgba(255,255,255,.13);backdrop-filter:blur(12px);display:grid;place-items:center;font-family:var(--serif);font-size:2rem;margin-bottom:14px}
+    .carrier-quote strong{display:block;font-family:var(--serif);font-size:2rem;font-weight:400;line-height:1.05}
+    .carrier-quote span{display:block;color:#cfdbdd;font-size:.74rem;line-height:1.5;margin-top:8px}
+    .carrier-content{background:#fff;border:1px solid var(--line);border-radius:38px;padding:34px}
+    .carrier-content h2{font-family:var(--serif);font-size:clamp(2.55rem,4.2vw,4rem);font-weight:400;line-height:.98;margin:12px 0 13px}
+    .carrier-content>p{color:var(--muted);line-height:1.65;margin:0 0 23px;max-width:60ch}
+    .carrier-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .carrier-card{border-radius:20px;padding:16px;min-height:118px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;border:1px solid rgba(17,42,49,.06);transition:.2s ease}
+    .carrier-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-soft)}
+    .carrier-card:nth-child(1){background:var(--sky)}
+    .carrier-card:nth-child(2){background:var(--mint)}
+    .carrier-card:nth-child(3){background:var(--lav)}
+    .carrier-card:nth-child(4){background:var(--sand)}
+    .carrier-card:nth-child(5){background:var(--rose)}
+    .carrier-card:nth-child(6){background:var(--blue)}
+    .carrier-mark{width:45px;height:45px;border-radius:15px;background:rgba(255,255,255,.82);display:grid;place-items:center;font-weight:900;font-size:.72rem;color:var(--ink);box-shadow:0 6px 16px rgba(18,42,48,.07)}
+    .carrier-card strong{display:block;font-size:.82rem;line-height:1.3}
+    .carrier-card small{display:block;color:#6c797e;font-size:.61rem;line-height:1.45;margin-top:4px}
+    .carrier-note{font-size:.67rem;color:#899397;line-height:1.5;margin-top:16px}
+
+    /* About */
+    .about{background:#fff}
+    .about-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:62px;align-items:center}
+    .about-photo{position:relative}
+    .about-photo::before{content:"";position:absolute;left:-16px;bottom:-16px;width:66%;height:66%;border-radius:34px;background:linear-gradient(145deg,var(--teal),#7cdbcf);z-index:0}
+    .about-photo img{position:relative;z-index:1;width:100%;height:610px;object-fit:cover;object-position:center 28%;border-radius:36px;box-shadow:var(--shadow)}
+    .about-copy h2{font-family:var(--serif);font-size:clamp(2.9rem,5vw,4.8rem);font-weight:400;line-height:.97;margin:12px 0 18px}
+    .about-copy p{color:var(--muted);line-height:1.82;font-size:.98rem;max-width:66ch}
+    .faith-note{margin-top:19px;padding:17px 19px;border-radius:18px;background:var(--rose);border-left:3px solid var(--coral);font-family:var(--serif);font-size:1.18rem;line-height:1.45;color:#65333c}
+    .promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+    .promise{padding:16px;border-radius:18px;background:#f7faf9;border:1px solid var(--line)}
+    .promise b{display:block;font-size:.79rem}
+    .promise span{display:block;color:#778388;font-size:.64rem;line-height:1.45;margin-top:4px}
+
+    /* Booking */
+    .booking{background:var(--ink);color:#fff}
+    .booking-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:46px;align-items:start}
+    .booking-copy h2{font-family:var(--serif);font-size:clamp(2.9rem,5vw,4.7rem);font-weight:400;line-height:.97;margin:12px 0 16px}
+    .booking-copy p{color:#b8c2c5;line-height:1.75;max-width:47ch}
+    .booking-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .booking-card{background:#fff;color:var(--text);border-radius:28px;padding:27px;min-height:292px;display:flex;flex-direction:column;justify-content:space-between}
+    .booking-icon{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:var(--sky);color:var(--teal-deep)}
+    .booking-card:nth-child(2) .booking-icon{background:var(--rose);color:var(--coral-deep)}
+    .booking-icon svg{width:23px;height:23px}
+    .booking-card h3{font-family:var(--serif);font-size:1.8rem;font-weight:400;margin:20px 0 8px}
+    .booking-card p{color:var(--muted);font-size:.84rem;line-height:1.6;margin:0 0 20px}
+    .calendar-message{display:none;grid-column:1/-1;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);color:#d5dde0;font-size:.75rem;line-height:1.55}
+    .calendar-message.show{display:block}
+
+    /* Footer */
+    .footer{background:#0b1115;color:#9eaaae;padding:38px 0 104px}
+    .footer-top{display:flex;justify-content:space-between;gap:28px;align-items:flex-start}
+    .footer p{font-size:.72rem;line-height:1.6;max-width:720px}
+    .footer-links{display:flex;gap:14px;flex-wrap:wrap}
+    .footer-links a{color:#fff;text-decoration:none;font-size:.74rem;font-weight:700}
+    .compliance{border-top:1px solid rgba(255,255,255,.08);margin-top:24px;padding-top:18px;font-size:.64rem;line-height:1.6;color:#748085}
+    .mobile-bar{display:none}
+
+    @media (max-width:1020px){
+      .nav-links{display:none}
+      .hero-shell,.options-shell,.check-grid,.carrier-shell,.about-grid,.booking-grid{grid-template-columns:1fr}
+      .hero-visual{min-height:590px;max-width:650px;width:100%;margin:0 auto}
+      .hero-photo-wrap{inset:0 0 0 60px}
+      .carrier-story{min-height:560px}
+      .carrier-grid{grid-template-columns:repeat(3,1fr)}
+      .about-photo{max-width:610px;margin:0 auto;width:100%}
+      .promise-grid{grid-template-columns:1fr 1fr 1fr}
+    }
+    @media (max-width:740px){
+      .container{width:min(calc(100% - 24px),var(--container))}
+      .section{padding:66px 0}
+      .nav{min-height:66px}
+      .nav-book{display:none}
+      .brand-mark{width:38px;height:38px;border-radius:13px}
+      .brand-copy strong{font-size:.9rem}
+      .brand-copy small{font-size:.48rem}
+      .hero{padding:43px 0 50px}
+      .hero-copy{padding:14px 0 2px}
+      .hero-copy h1{font-size:clamp(3.1rem,15vw,4.7rem)}
+      .hero-copy .lead{font-size:.94rem}
+      .hero-cta{display:grid;grid-template-columns:1fr 1fr}
+      .hero-cta .btn:first-child{grid-column:1/-1}
+      .hero-visual{min-height:510px}
+      .hero-photo-wrap{inset:22px 0 0 22px;border-radius:30px}
+      .hero-name{left:22px;right:22px;bottom:22px}
+      .hero-name strong{font-size:1.6rem}
+      .hero-float{left:0;top:0;width:164px;padding:13px;border-radius:18px}
+      .hero-float strong{font-size:1.18rem}
+      .hero-orb{display:none}
+      .options-intro{padding:28px;border-radius:30px}
+      .option-card{grid-template-columns:1fr;padding:23px}
+      .option-index{width:52px;height:52px}
+      .quiz-card{padding:22px;border-radius:25px}
+      .help-shell{grid-template-columns:1fr}
+      .help-card{min-height:220px;padding:26px}
+      .carrier-story{min-height:500px;border-radius:30px}
+      .carrier-content{padding:25px 18px;border-radius:30px}
+      .carrier-grid{grid-template-columns:1fr 1fr}
+      .about-grid{gap:42px}
+      .about-photo img{height:520px;border-radius:30px}
+      .promise-grid{grid-template-columns:1fr}
+      .booking-options{grid-template-columns:1fr}
+      .booking-card{min-height:0}
+      .footer-top{flex-direction:column}
+      .mobile-bar{display:grid;grid-template-columns:1fr 1fr 1fr;position:fixed;left:10px;right:10px;bottom:10px;z-index:70;background:rgba(15,23,28,.95);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(18px);border-radius:17px;padding:7px;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+      .mobile-bar a{text-decoration:none;color:#fff;text-align:center;font-size:.7rem;font-weight:800;padding:11px 4px;border-radius:12px}
+      .mobile-bar .book{background:linear-gradient(135deg,var(--coral),var(--coral-deep))}
+    }
+    @media (max-width:440px){
+      .hero-cta{grid-template-columns:1fr}
+      .hero-cta .btn:first-child{grid-column:auto}
+      .trust-points{gap:6px}
+      .trust-pill{font-size:.66rem}
+      .hero-visual{min-height:465px}
+      .hero-photo-wrap{left:14px}
+      .hero-float{width:150px}
+      .carrier-grid{grid-template-columns:1fr}
+      .about-photo img{height:475px}
+    }
+  </style>
+</head>
+<body id="top">
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="#top" aria-label="LOE Insurance Broker home">
+      <span class="brand-mark">L</span>
+      <span class="brand-copy"><strong>LOE</strong><small>INSURANCE BROKER</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#medicare" data-i18n="navMedicare">Medicare</a>
+      <a href="#check" data-i18n="navCheck">Quick check</a>
+      <a href="#carriers" data-i18n="navCarriers">Carriers</a>
+      <a href="#lucy" data-i18n="navLucy">Meet Lucy</a>
+      <a href="#book" data-i18n="navBook">Appointment</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang-switch" aria-label="Language selector">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="es">ES</button>
+      </div>
+      <button class="nav-book js-scroll-book" type="button" data-i18n="bookFree">Book a free conversation</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-shell">
+      <div class="hero-copy">
+        <div class="eyebrow" data-i18n="heroEyebrow">Independent Medicare broker · Arizona</div>
+        <h1 data-i18n="heroTitle">Medicare feels lighter when someone truly listens.</h1>
+        <p class="lead" data-i18n="heroLead">I’m <strong>Lucy Encarnación</strong>. I help you understand Medicare Advantage and Part D in plain language, compare what is available where you live, and stay close when questions come later.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary js-scroll-book" type="button" data-i18n="heroBook">Book a free conversation</button>
+          <a class="btn btn-dark" href="tel:+14846652494" data-i18n="callLucy">Call Lucy</a>
+          <a class="btn btn-soft" href="https://wa.me/14846652494" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
+        </div>
+        <div class="trust-points">
+          <span class="trust-pill" data-i18n="trust1">Serving all Arizona</span>
+          <span class="trust-pill" data-i18n="trust2">English + Español</span>
+          <span class="trust-pill" data-i18n="trust3">Personal guidance at no cost to you</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Lucy Encarnación">
+        <div class="hero-orb"></div>
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="lucy1.jpg" alt="Lucy Encarnación, insurance broker" />
+          <div class="hero-name">
+            <strong>Lucy Encarnación</strong>
+            <span data-i18n="heroNameSub">Independent Medicare broker · Arizona · Bilingual</span>
+          </div>
+        </div>
+        <div class="hero-float">
+          <b data-i18n="heroFloatEyebrow">Personal review</b>
+          <strong data-i18n="heroFloatTitle">Clarity before decisions.</strong>
+          <p data-i18n="heroFloatText">A real conversation, without call-center pressure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section options" id="medicare">
+    <div class="container options-shell">
+      <div class="options-intro">
+        <div class="eyebrow" data-i18n="optionsEyebrow">Your Medicare options</div>
+        <h2 data-i18n="optionsTitle">Less jargon. More clarity.</h2>
+        <p data-i18n="optionsLead">We focus on the two areas you asked us to help with, then explain the details in a way that is easy to compare.</p>
+      </div>
+      <div class="option-stack">
+        <article class="option-card">
+          <div class="option-index">C</div>
+          <div>
+            <h3 data-i18n="partCTitle">Medicare Advantage · Part C</h3>
+            <p data-i18n="partCText">Medicare Advantage plans are offered by private insurance companies approved by Medicare and provide your Part A and Part B benefits. Many plans also include Part D prescription coverage and may offer additional benefits.</p>
+            <div class="option-points">
+              <span data-i18n="partC1">Networks & costs</span>
+              <span data-i18n="partC2">County availability</span>
+              <span data-i18n="partC3">Possible extra benefits</span>
+            </div>
+          </div>
+        </article>
+        <article class="option-card">
+          <div class="option-index">D</div>
+          <div>
+            <h3 data-i18n="partDTitle">Prescription drug coverage · Part D</h3>
+            <p data-i18n="partDText">Part D helps cover prescription drugs. We can review your medications, plan formularies, participating pharmacies, and available options so the comparison feels practical—not abstract.</p>
+            <div class="option-points">
+              <span data-i18n="partD1">Medication review</span>
+              <span data-i18n="partD2">Formularies</span>
+              <span data-i18n="partD3">Pharmacy networks</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section check" id="check">
+    <div class="container check-grid">
+      <div class="check-copy">
+        <div class="eyebrow" data-i18n="checkEyebrow">A simple starting point</div>
+        <h2 data-i18n="checkTitle">Three questions. A clearer place to begin.</h2>
+        <p data-i18n="checkLead">This quick check is designed to help you know whether it makes sense to have a conversation. No name, phone number, or medical information is required.</p>
+      </div>
+      <div class="quiz-card">
+        <div class="question" data-q="age">
+          <h3 data-i18n="q1">Are you age 65 or older?</h3>
+          <div class="option-row"><button class="quiz-option" data-value="yes" data-i18n="yes">Yes</button><button class="quiz-option" data-value="no" data-i18n="no">No</button><button class="quiz-option" data-value="unsure" data-i18n="unsure">Not sure</button></div>
+        </div>
+        <div class="question" data-q="work">
+          <h3 data-i18n="q2">Have you or your spouse worked and paid Medicare taxes for about 10 years?</h3>
+          <div class="option-row"><button class="quiz-option" data-value="yes" data-i18n="yes">Yes</button><button class="quiz-option" data-value="no" data-i18n="no">No</button><button class="quiz-option" data-value="unsure" data-i18n="unsure">Not sure</button></div>
+        </div>
+        <div class="question" data-q="disability">
+          <h3 data-i18n="q3">Do you receive qualifying disability benefits or have a condition that may qualify?</h3>
+          <div class="option-row"><button class="quiz-option" data-value="yes" data-i18n="yes">Yes</button><button class="quiz-option" data-value="no" data-i18n="no">No</button><button class="quiz-option" data-value="unsure" data-i18n="unsure">Not sure</button></div>
+        </div>
+        <div class="quiz-actions"><button class="btn btn-primary" id="checkEligibility" type="button" data-i18n="checkButton">Check my starting point</button><button class="btn btn-soft" id="resetQuiz" type="button" data-i18n="reset">Reset</button></div>
+        <div class="result" id="quizResult"><strong id="resultTitle"></strong><p id="resultText"></p></div>
+        <div class="quiz-note" data-i18n="quizNote">This educational check does not determine official Medicare eligibility. Eligibility depends on individual circumstances and Medicare rules.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section help">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="helpEyebrow">Help with costs</div>
+        <h2 data-i18n="helpTitle">When every dollar matters, we look closer.</h2>
+        <p data-i18n="helpLead">Some people may qualify for programs or plan options that can make prescription and healthcare costs easier to manage.</p>
+      </div>
+      <div class="help-shell">
+        <article class="help-card"><div class="num">01</div><h3 data-i18n="extraTitle">Extra Help</h3><p data-i18n="extraText">Extra Help is a Medicare program that can help people with limited income and resources pay certain Part D prescription drug costs.</p></article>
+        <article class="help-card"><div class="num">02</div><h3 data-i18n="dualTitle">Medicare + Medicaid</h3><p data-i18n="dualText">People who have both Medicare and Medicaid may have access to plan options designed to coordinate their coverage and benefits.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section carriers" id="carriers">
+    <div class="container carrier-shell">
+      <div class="carrier-story">
+        <img src="lucy3.jpg" alt="Lucy Encarnación providing personal insurance guidance" />
+        <div class="carrier-quote">
+          <div class="quote-mark">“</div>
+          <strong data-i18n="carrierQuote">A good plan matters. Feeling understood matters too.</strong>
+          <span data-i18n="carrierQuoteSub">That is why every comparison starts with a conversation.</span>
+        </div>
+      </div>
+      <div class="carrier-content">
+        <div class="eyebrow" data-i18n="carrierEyebrow">Carrier relationships</div>
+        <h2 data-i18n="carrierTitle">Recognized names. Guidance that stays personal.</h2>
+        <p data-i18n="carrierLead">I review plan availability by county and help you compare the details that matter to your life—not just what looks good on a brochure.</p>
+        <div class="carrier-grid">
+          <div class="carrier-card"><div class="carrier-mark">UHC</div><div><strong>UnitedHealthcare</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
+          <div class="carrier-card"><div class="carrier-mark">H</div><div><strong>Humana</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
+          <div class="carrier-card"><div class="carrier-mark">AH</div><div><strong>Alignment Health</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
+          <div class="carrier-card"><div class="carrier-mark">W</div><div><strong>Wellcare</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
+          <div class="carrier-card"><div class="carrier-mark">A</div><div><strong>Aetna</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
+          <div class="carrier-card"><div class="carrier-mark">BCBS</div><div><strong>Blue Cross Blue Shield</strong><small data-i18n="rhodeIsland">Rhode Island only</small></div></div>
+        </div>
+        <div class="carrier-note" data-i18n="carrierDisclaimer">Carrier and plan availability varies by county, eligibility, service area, and plan year.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="lucy">
+    <div class="container about-grid">
+      <div class="about-photo"><img src="lucy2.jpg" alt="Lucy Encarnación" /></div>
+      <div class="about-copy">
+        <div class="eyebrow" data-i18n="aboutEyebrow">Meet your broker</div>
+        <h2 data-i18n="aboutTitle">Trust is built one conversation at a time.</h2>
+        <p data-i18n="aboutText">My name is Lucy Encarnación. Serving others with honesty, empathy, and dedication is at the center of how I work. I am a woman of faith, devoted to God through Christ, and I want those values to be felt in every conversation and in the way I serve each person. My goal is not simply to help you understand your options, but to build a lasting relationship rooted in trust and respect.</p>
+        <div class="faith-note" data-i18n="faithNote">My faith guides the way I serve: with honesty, empathy, respect, and dedication.</div>
+        <div class="promise-grid">
+          <div class="promise"><b data-i18n="promise1Title">I listen first</b><span data-i18n="promise1Text">Your needs come before the plan.</span></div>
+          <div class="promise"><b data-i18n="promise2Title">I explain clearly</b><span data-i18n="promise2Text">No unnecessary insurance language.</span></div>
+          <div class="promise"><b data-i18n="promise3Title">I stay connected</b><span data-i18n="promise3Text">Support does not end after enrollment.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section booking" id="book">
+    <div class="container booking-grid">
+      <div class="booking-copy">
+        <div class="eyebrow" data-i18n="bookingEyebrow">A conversation, your way</div>
+        <h2 data-i18n="bookingTitle">When you’re ready, I’m here.</h2>
+        <p data-i18n="bookingLead">Choose the way you prefer to meet. Your appointment will open directly from the available calendar schedule.</p>
+      </div>
+      <div class="booking-options">
+        <article class="booking-card">
+          <div>
+            <div class="booking-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-6h6v6"/></svg></div>
+            <h3 data-i18n="inPersonTitle">In-person appointment</h3>
+            <p data-i18n="inPersonText">Meet face to face. In-person appointments are available on Mondays.</p>
+          </div>
+          <button class="btn btn-primary js-book-inperson" type="button" data-i18n="inPersonButton">See Monday times</button>
+        </article>
+        <article class="booking-card">
+          <div>
+            <div class="booking-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"/></svg></div>
+            <h3 data-i18n="phoneTitle">Phone appointment</h3>
+            <p data-i18n="phoneText">Choose any phone appointment shown as available in the calendar.</p>
+          </div>
+          <button class="btn btn-dark js-book-phone" type="button" data-i18n="phoneButton">See available times</button>
+        </article>
+        <div class="calendar-message" id="calendarMessage"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="#top"><span class="brand-mark">L</span><span class="brand-copy"><strong>LOE</strong><small>INSURANCE BROKER</small></span></a>
+        <p data-i18n="footerService">Independent insurance broker serving Arizona with personal Medicare Advantage and Medicare Part D guidance in English and Spanish.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a>
+        <a href="tel:+14846652494" data-i18n="callUs">Call</a>
+        <a href="https://wa.me/14846652494" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="compliance" data-i18n="footerLegal">LOE Insurance Broker is not affiliated with or endorsed by the U.S. government or the federal Medicare program. Plan availability, benefits, networks, formularies, premiums, costs, and eligibility vary by plan and service area.</div>
+  </div>
+</footer>
+
+<div class="mobile-bar" aria-label="Quick actions">
+  <a href="tel:+14846652494" data-i18n="mobileCall">Call</a>
+  <a href="https://wa.me/14846652494" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="book" href="#book" data-i18n="mobileBook">Book</a>
+</div>
+
+<script>
+  const IN_PERSON_BOOKING_URL = "";
+  const PHONE_BOOKING_URL = "";
+
+  const copy = {
+    en:{
+      navMedicare:'Medicare',navCheck:'Quick check',navCarriers:'Carriers',navLucy:'Meet Lucy',navBook:'Appointment',bookFree:'Book a free conversation',
+      heroEyebrow:'Independent Medicare broker · Arizona',heroTitle:'Medicare feels lighter when someone truly listens.',heroLead:'I’m <strong>Lucy Encarnación</strong>. I help you understand Medicare Advantage and Part D in plain language, compare what is available where you live, and stay close when questions come later.',heroBook:'Book a free conversation',callLucy:'Call Lucy',whatsapp:'WhatsApp',trust1:'Serving all Arizona',trust2:'English + Español',trust3:'Personal guidance at no cost to you',heroNameSub:'Independent Medicare broker · Arizona · Bilingual',heroFloatEyebrow:'Personal review',heroFloatTitle:'Clarity before decisions.',heroFloatText:'A real conversation, without call-center pressure.',
+      optionsEyebrow:'Your Medicare options',optionsTitle:'Less jargon. More clarity.',optionsLead:'We focus on the two areas you asked us to help with, then explain the details in a way that is easy to compare.',partCTitle:'Medicare Advantage · Part C',partCText:'Medicare Advantage plans are offered by private insurance companies approved by Medicare and provide your Part A and Part B benefits. Many plans also include Part D prescription coverage and may offer additional benefits.',partC1:'Networks & costs',partC2:'County availability',partC3:'Possible extra benefits',partDTitle:'Prescription drug coverage · Part D',partDText:'Part D helps cover prescription drugs. We can review your medications, plan formularies, participating pharmacies, and available options so the comparison feels practical—not abstract.',partD1:'Medication review',partD2:'Formularies',partD3:'Pharmacy networks',
+      checkEyebrow:'A simple starting point',checkTitle:'Three questions. A clearer place to begin.',checkLead:'This quick check is designed to help you know whether it makes sense to have a conversation. No name, phone number, or medical information is required.',q1:'Are you age 65 or older?',q2:'Have you or your spouse worked and paid Medicare taxes for about 10 years?',q3:'Do you receive qualifying disability benefits or have a condition that may qualify?',yes:'Yes',no:'No',unsure:'Not sure',checkButton:'Check my starting point',reset:'Reset',quizNote:'This educational check does not determine official Medicare eligibility. Eligibility depends on individual circumstances and Medicare rules.',resultLikelyTitle:'It is worth reviewing your Medicare options.',resultLikelyText:'Based on your answers, there may be a Medicare path worth discussing. A personal review is the best next step.',resultReviewTitle:'Let’s look at your situation together.',resultReviewText:'These answers do not automatically rule Medicare in or out. Work history, disability benefits, certain conditions, and other circumstances can matter.',resultMissingTitle:'Answer all three questions first.',resultMissingText:'Choose one answer for each question, then check your starting point.',
+      helpEyebrow:'Help with costs',helpTitle:'When every dollar matters, we look closer.',helpLead:'Some people may qualify for programs or plan options that can make prescription and healthcare costs easier to manage.',extraTitle:'Extra Help',extraText:'Extra Help is a Medicare program that can help people with limited income and resources pay certain Part D prescription drug costs.',dualTitle:'Medicare + Medicaid',dualText:'People who have both Medicare and Medicaid may have access to plan options designed to coordinate their coverage and benefits.',
+      carrierQuote:'A good plan matters. Feeling understood matters too.',carrierQuoteSub:'That is why every comparison starts with a conversation.',carrierEyebrow:'Carrier relationships',carrierTitle:'Recognized names. Guidance that stays personal.',carrierLead:'I review plan availability by county and help you compare the details that matter to your life—not just what looks good on a brochure.',carrierNote:'Reviewed based on availability',rhodeIsland:'Rhode Island only',carrierDisclaimer:'Carrier and plan availability varies by county, eligibility, service area, and plan year.',
+      aboutEyebrow:'Meet your broker',aboutTitle:'Trust is built one conversation at a time.',aboutText:'My name is Lucy Encarnación. Serving others with honesty, empathy, and dedication is at the center of how I work. I am a woman of faith, devoted to God through Christ, and I want those values to be felt in every conversation and in the way I serve each person. My goal is not simply to help you understand your options, but to build a lasting relationship rooted in trust and respect.',faithNote:'My faith guides the way I serve: with honesty, empathy, respect, and dedication.',promise1Title:'I listen first',promise1Text:'Your needs come before the plan.',promise2Title:'I explain clearly',promise2Text:'No unnecessary insurance language.',promise3Title:'I stay connected',promise3Text:'Support does not end after enrollment.',
+      bookingEyebrow:'A conversation, your way',bookingTitle:'When you’re ready, I’m here.',bookingLead:'Choose the way you prefer to meet. Your appointment will open directly from the available calendar schedule.',inPersonTitle:'In-person appointment',inPersonText:'Meet face to face. In-person appointments are available on Mondays.',inPersonButton:'See Monday times',phoneTitle:'Phone appointment',phoneText:'Choose any phone appointment shown as available in the calendar.',phoneButton:'See available times',calendarMissing:'The Google Calendar booking link has not been connected yet. Add the booking URL in index.html and this button will open the live schedule.',
+      footerService:'Independent insurance broker serving Arizona with personal Medicare Advantage and Medicare Part D guidance in English and Spanish.',callUs:'Call',footerLegal:'LOE Insurance Broker is not affiliated with or endorsed by the U.S. government or the federal Medicare program. Plan availability, benefits, networks, formularies, premiums, costs, and eligibility vary by plan and service area.',mobileCall:'Call',mobileBook:'Book'
+    },
+    es:{
+      navMedicare:'Medicare',navCheck:'Comprobación rápida',navCarriers:'Aseguradoras',navLucy:'Conoce a Lucy',navBook:'Cita',bookFree:'Agenda una conversación gratis',
+      heroEyebrow:'Broker independiente de Medicare · Arizona',heroTitle:'Medicare se siente más sencillo cuando alguien realmente te escucha.',heroLead:'Soy <strong>Lucy Encarnación</strong>. Te ayudo a entender Medicare Advantage y la Parte D con palabras claras, comparar lo disponible donde vives y seguir cerca cuando surjan preguntas después.',heroBook:'Agenda una conversación gratis',callLucy:'Llama a Lucy',whatsapp:'WhatsApp',trust1:'Atención en todo Arizona',trust2:'English + Español',trust3:'Orientación personal sin costo para ti',heroNameSub:'Broker independiente de Medicare · Arizona · Bilingüe',heroFloatEyebrow:'Revisión personal',heroFloatTitle:'Claridad antes de decidir.',heroFloatText:'Una conversación real, sin presión de call center.',
+      optionsEyebrow:'Tus opciones de Medicare',optionsTitle:'Menos términos. Más claridad.',optionsLead:'Nos enfocamos en las dos áreas en las que quieres ayuda y explicamos los detalles de una forma fácil de comparar.',partCTitle:'Medicare Advantage · Parte C',partCText:'Los planes Medicare Advantage son ofrecidos por compañías privadas aprobadas por Medicare y brindan los beneficios de las Partes A y B. Muchos planes también incluyen cobertura de medicamentos Parte D y pueden ofrecer beneficios adicionales.',partC1:'Redes y costos',partC2:'Disponibilidad por condado',partC3:'Posibles beneficios adicionales',partDTitle:'Cobertura de medicamentos · Parte D',partDText:'La Parte D ayuda a cubrir medicamentos recetados. Podemos revisar tus medicamentos, formularios, farmacias participantes y opciones disponibles para que la comparación sea práctica y fácil de entender.',partD1:'Revisión de medicamentos',partD2:'Formularios',partD3:'Red de farmacias',
+      checkEyebrow:'Un punto de partida sencillo',checkTitle:'Tres preguntas. Un comienzo más claro.',checkLead:'Esta comprobación rápida te ayuda a saber si vale la pena conversar sobre tus opciones. No necesitas escribir tu nombre, teléfono ni información médica.',q1:'¿Tienes 65 años o más?',q2:'¿Tú o tu cónyuge han trabajado y pagado impuestos de Medicare durante aproximadamente 10 años?',q3:'¿Recibes beneficios por discapacidad que califican o tienes una condición que podría calificar?',yes:'Sí',no:'No',unsure:'No estoy seguro',checkButton:'Revisar mi punto de partida',reset:'Reiniciar',quizNote:'Esta comprobación es educativa y no determina la elegibilidad oficial para Medicare. La elegibilidad depende de las circunstancias individuales y las reglas de Medicare.',resultLikelyTitle:'Vale la pena revisar tus opciones de Medicare.',resultLikelyText:'Según tus respuestas, puede haber un camino de Medicare que conviene conversar. Una revisión personal es el mejor siguiente paso.',resultReviewTitle:'Revisemos tu situación juntos.',resultReviewText:'Estas respuestas no confirman ni descartan Medicare automáticamente. El historial laboral, beneficios por discapacidad, ciertas condiciones y otras circunstancias pueden influir.',resultMissingTitle:'Responde primero las tres preguntas.',resultMissingText:'Elige una respuesta para cada pregunta y luego revisa tu punto de partida.',
+      helpEyebrow:'Ayuda con los costos',helpTitle:'Cuando cada dólar importa, miramos más de cerca.',helpLead:'Algunas personas pueden calificar para programas u opciones de planes que ayudan a manejar mejor los costos de medicamentos y atención médica.',extraTitle:'Extra Help',extraText:'Extra Help es un programa de Medicare que puede ayudar a personas con ingresos y recursos limitados a pagar ciertos costos de medicamentos de la Parte D.',dualTitle:'Medicare + Medicaid',dualText:'Las personas que tienen Medicare y Medicaid pueden tener acceso a opciones de planes diseñadas para coordinar su cobertura y beneficios.',
+      carrierQuote:'Un buen plan importa. Sentirse comprendido también.',carrierQuoteSub:'Por eso cada comparación comienza con una conversación.',carrierEyebrow:'Relaciones con aseguradoras',carrierTitle:'Nombres reconocidos. Una orientación que sigue siendo personal.',carrierLead:'Reviso la disponibilidad de planes por condado y te ayudo a comparar los detalles que realmente importan en tu vida, no solo lo que luce bien en un folleto.',carrierNote:'Revisado según disponibilidad',rhodeIsland:'Solo Rhode Island',carrierDisclaimer:'La disponibilidad de compañías y planes varía según el condado, la elegibilidad, el área de servicio y el año del plan.',
+      aboutEyebrow:'Conoce a tu broker',aboutTitle:'La confianza se construye conversación a conversación.',aboutText:'Mi nombre es Lucy Encarnación. Servir a los demás con honestidad, empatía y dedicación está en el centro de mi trabajo. Soy una mujer de fe, amante y fiel a Dios a través de Cristo, y procuro que esos valores se reflejen en cada conversación y en la manera en que trato y sirvo a cada persona. Mi propósito no es solo ayudarte a entender tus opciones, sino construir una relación duradera basada en la confianza y el respeto.',faithNote:'Mi fe guía mi manera de servir: con honestidad, empatía, respeto y dedicación.',promise1Title:'Primero te escucho',promise1Text:'Tus necesidades vienen antes que el plan.',promise2Title:'Te explico con claridad',promise2Text:'Sin lenguaje de seguros innecesario.',promise3Title:'Sigo a tu lado',promise3Text:'El apoyo no termina después de inscribirte.',
+      bookingEyebrow:'Una conversación a tu manera',bookingTitle:'Cuando estés listo, aquí estoy.',bookingLead:'Elige cómo prefieres reunirnos. Tu cita se abrirá directamente desde los horarios disponibles del calendario.',inPersonTitle:'Cita presencial',inPersonText:'Reúnete cara a cara. Las citas presenciales están disponibles los lunes.',inPersonButton:'Ver horarios del lunes',phoneTitle:'Cita telefónica',phoneText:'Elige cualquier cita telefónica que aparezca disponible en el calendario.',phoneButton:'Ver horarios disponibles',calendarMissing:'El enlace de reservas de Google Calendar todavía no está conectado. Añade la URL de reserva en index.html y este botón abrirá el calendario real.',
+      footerService:'Broker de seguros independiente que atiende Arizona con orientación personal sobre Medicare Advantage y Medicare Parte D en inglés y español.',callUs:'Llamar',footerLegal:'LOE Insurance Broker no está afiliado ni respaldado por el gobierno de Estados Unidos ni por el programa federal Medicare. La disponibilidad de planes, beneficios, redes, formularios, primas, costos y elegibilidad varía según el plan y el área de servicio.',mobileCall:'Llamar',mobileBook:'Cita'
+    }
+  };
+
+  const savedLang = localStorage.getItem('loeLang');
+  let currentLang = savedLang || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
+
+  function setLanguage(lang){
+    currentLang = lang;
+    localStorage.setItem('loeLang', lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.dataset.i18n;
+      if(copy[lang][key] !== undefined) el.innerHTML = copy[lang][key];
+    });
+    document.querySelectorAll('[data-lang]').forEach(btn=>btn.classList.toggle('active', btn.dataset.lang===lang));
+  }
+
+  document.querySelectorAll('[data-lang]').forEach(btn=>btn.addEventListener('click',()=>setLanguage(btn.dataset.lang)));
+  setLanguage(currentLang);
+
+  document.querySelectorAll('.js-scroll-book').forEach(btn=>btn.addEventListener('click',()=>document.getElementById('book').scrollIntoView({behavior:'smooth'})));
+
+  const answers = {};
+  document.querySelectorAll('.question').forEach(q=>{
+    q.querySelectorAll('.quiz-option').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        q.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('active'));
+        btn.classList.add('active');
+        answers[q.dataset.q] = btn.dataset.value;
+      });
+    });
+  });
+
+  document.getElementById('checkEligibility').addEventListener('click',()=>{
+    const result = document.getElementById('quizResult');
+    const title = document.getElementById('resultTitle');
+    const text = document.getElementById('resultText');
+    if(!answers.age || !answers.work || !answers.disability){
+      title.textContent = copy[currentLang].resultMissingTitle;
+      text.textContent = copy[currentLang].resultMissingText;
+    } else if((answers.age==='yes' && answers.work==='yes') || answers.disability==='yes'){
+      title.textContent = copy[currentLang].resultLikelyTitle;
+      text.textContent = copy[currentLang].resultLikelyText;
+    } else {
+      title.textContent = copy[currentLang].resultReviewTitle;
+      text.textContent = copy[currentLang].resultReviewText;
+    }
+    result.classList.add('show');
+  });
+
+  document.getElementById('resetQuiz').addEventListener('click',()=>{
+    Object.keys(answers).forEach(k=>delete answers[k]);
+    document.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('active'));
+    document.getElementById('quizResult').classList.remove('show');
+  });
+
+  function openBooking(url){
+    if(url){ window.open(url,'_blank','noopener'); return; }
+    const msg = document.getElementById('calendarMessage');
+    msg.textContent = copy[currentLang].calendarMissing;
+    msg.classList.add('show');
+  }
+  document.querySelector('.js-book-inperson').addEventListener('click',()=>openBooking(IN_PERSON_BOOKING_URL));
+  document.querySelector('.js-book-phone').addEventListener('click',()=>openBooking(PHONE_BOOKING_URL));
+</script>
+</body>
+</html>
