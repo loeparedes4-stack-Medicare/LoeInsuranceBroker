@@ -137,9 +137,18 @@
     .quiz-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
     .quiz-note{font-size:.7rem;color:#849095;line-height:1.55;margin-top:13px}
     .result{display:none;margin-top:16px;padding:17px;border-radius:18px;background:var(--mint);border:1px solid #ccefe4}
+    .result.error{background:#fff1f2;border-color:#ffb3bd}
+    .result.error strong{color:#b42318}
+    .result.error p{color:#8e2331}
+    .result.success{background:var(--mint);border-color:#ccefe4}
+    .result.success strong{color:#08685f}
+    .result.success p{color:#49645f}
+    .result.info{background:#f6f8f8;border-color:#dfe7e6}
+    .result.info strong{color:var(--ink)}
+    .result.info p{color:#59676c}
     .result.show{display:block}
-    .result strong{display:block;color:#08685f;margin-bottom:5px}
-    .result p{margin:0;color:#49645f;font-size:.82rem;line-height:1.6}
+    .result strong{display:block;margin-bottom:5px}
+    .result p{margin:0;font-size:.82rem;line-height:1.6}
 
     /* Help */
     .help{background:#fff}
@@ -198,6 +207,8 @@
     .booking-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:46px;align-items:start}
     .booking-copy h2{font-family:var(--serif);font-size:clamp(2.9rem,5vw,4.7rem);font-weight:400;line-height:.97;margin:12px 0 16px}
     .booking-copy p{color:#b8c2c5;line-height:1.75;max-width:47ch}
+    .booking-copy .contact-line{margin-top:18px;font-size:.86rem;color:#d8e0e2}
+    .booking-copy .contact-line a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}
     .booking-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .booking-card{background:#fff;color:var(--text);border-radius:28px;padding:27px;min-height:292px;display:flex;flex-direction:column;justify-content:space-between}
     .booking-icon{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:var(--sky);color:var(--teal-deep)}
@@ -409,267 +420,6 @@
       .about-photo{border-radius:30px;padding:10px}
       .about-photo img{height:500px;border-radius:23px}
     }
-
-
-    /* V6 — immersive, fully integrated photography */
-    .header{
-      position:fixed;left:0;right:0;top:0;
-      background:rgba(10,17,21,.88);
-      border-bottom:1px solid rgba(255,255,255,.08);
-      box-shadow:0 8px 30px rgba(0,0,0,.08);
-    }
-
-    .hero{
-      position:relative;
-      min-height:780px;
-      padding:0;
-      background:var(--ink);
-      color:#fff;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      top:0;right:0;bottom:0;left:48%;
-      background-image:url('lucy1.jpeg');
-      background-size:cover;
-      background-position:center 27%;
-      background-repeat:no-repeat;
-      z-index:0;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      top:0;left:0;bottom:0;width:48%;
-      background:#0f171c;
-      z-index:0;
-      pointer-events:none;
-    }
-    .hero-shell{
-      position:relative;
-      z-index:2;
-      min-height:780px;
-      grid-template-columns:minmax(0,1fr) .92fr;
-      gap:0;
-      align-items:center;
-    }
-    .hero-copy{
-      max-width:650px;
-      padding:150px 52px 88px 0;
-    }
-    .hero-copy .eyebrow{color:#8ee3d7}
-    .hero-copy h1{
-      color:#fff;
-      font-size:clamp(3.7rem,6.2vw,6.2rem);
-      line-height:.9;
-      margin:18px 0 24px;
-      text-wrap:balance;
-    }
-    .hero-copy .lead{color:#c5ced1;max-width:58ch;font-size:1.02rem}
-    .hero-copy .lead strong{color:#fff}
-    .hero .btn-soft{
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.18);
-      color:#fff;
-      backdrop-filter:blur(10px);
-    }
-    .hero .trust-pill{
-      background:rgba(255,255,255,.07);
-      border-color:rgba(255,255,255,.12);
-      color:#d8e0e2;
-    }
-    .hero-visual{display:none!important}
-
-    .options{position:relative;z-index:4}
-    .options-intro{border-radius:0 34px 34px 0;margin-left:-5vw;padding-left:calc(38px + 5vw)}
-
-    /* Carrier section becomes one continuous editorial spread */
-    .carriers{padding:0;background:#f2f8f6}
-    .carriers .container{width:100%;max-width:none;margin:0}
-    .carrier-shell{
-      display:grid;
-      grid-template-columns:minmax(390px,42vw) 1fr;
-      gap:0;
-      min-height:690px;
-      align-items:stretch;
-    }
-    .carrier-story{
-      min-height:690px;
-      border:0;
-      border-radius:0;
-      padding:0;
-      box-shadow:none;
-      background:#dcebe7;
-      position:relative;
-      overflow:hidden;
-    }
-    .carrier-story img{
-      width:100%;height:100%;
-      object-fit:cover;
-      object-position:center 24%;
-      border:0;border-radius:0;
-    }
-    .carrier-story::after{display:none!important}
-    .carrier-quote{
-      position:absolute;
-      left:clamp(22px,4vw,58px);
-      right:clamp(22px,4vw,58px);
-      bottom:clamp(22px,4vw,52px);
-      color:var(--ink);
-      background:rgba(255,255,255,.93);
-      border:1px solid rgba(255,255,255,.9);
-      border-radius:22px;
-      padding:24px 26px;
-      box-shadow:0 18px 45px rgba(18,42,48,.12);
-      backdrop-filter:blur(14px);
-    }
-    .carrier-quote .quote-mark{display:none}
-    .carrier-quote strong{font-size:clamp(1.7rem,2.6vw,2.45rem);color:var(--ink);line-height:1.02}
-    .carrier-quote span{color:#66757a;font-size:.74rem}
-    .carrier-content{
-      border:0;
-      border-radius:0;
-      box-shadow:none;
-      background:#f2f8f6;
-      padding:clamp(64px,7vw,108px) clamp(34px,6vw,96px);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-    .carrier-content h2{max-width:760px;text-wrap:balance}
-    .carrier-content>p{max-width:68ch}
-    .carrier-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:4px}
-    .carrier-card{
-      position:relative;
-      min-height:104px;
-      background:#fff!important;
-      border:1px solid #d9e6e2;
-      border-radius:18px;
-      padding:16px 17px 16px 20px;
-      box-shadow:0 10px 26px rgba(24,61,61,.045);
-      overflow:hidden;
-    }
-    .carrier-card::before{
-      content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal);
-    }
-    .carrier-card:nth-child(2)::before,.carrier-card:nth-child(4)::before{background:#5f9fc7}
-    .carrier-card:nth-child(3)::before,.carrier-card:nth-child(5)::before{background:#8c7cd7}
-    .carrier-card:nth-child(6)::before{background:#3d79b8}
-    .carrier-mark{
-      width:46px;height:46px;border-radius:50%;
-      background:#edf8f5;color:var(--teal-deep);
-      box-shadow:none;border:1px solid #d7ebe5;
-    }
-    .carrier-card strong{font-size:.84rem}
-    .carrier-card small{font-size:.62rem}
-
-    /* About Lucy — image is the section, not a card */
-    .about{padding:0;background:#fff}
-    .about .container{width:100%;max-width:none;margin:0}
-    .about-grid{
-      grid-template-columns:1.05fr .95fr;
-      gap:0;
-      align-items:stretch;
-      min-height:720px;
-    }
-    .about-photo{
-      order:2;
-      padding:0;
-      border:0;
-      border-radius:0;
-      background:#eef5f2;
-      min-height:720px;
-      overflow:hidden;
-    }
-    .about-photo::before{display:none!important}
-    .about-photo img{
-      width:100%;height:100%;min-height:720px;
-      object-fit:cover;
-      object-position:center 24%;
-      border:0;border-radius:0;box-shadow:none;
-    }
-    .about-copy{
-      order:1;
-      padding:clamp(70px,8vw,118px) clamp(34px,7vw,110px);
-      align-self:center;
-      max-width:860px;
-    }
-    .about-copy h2{text-wrap:balance}
-    .faith-note{
-      background:#f8f2ef;
-      border-left:3px solid var(--coral);
-      border-radius:0 16px 16px 0;
-    }
-    .promise{background:#f5faf8;border-color:#dce8e4}
-
-    /* Stronger editorial rhythm */
-    .section-head h2,.check-copy h2,.booking-copy h2{max-width:800px;text-wrap:balance}
-    .help-card{border-radius:22px}
-    .option-card{border-radius:22px}
-    .booking-card{border-radius:22px}
-
-    @media (max-width:1020px){
-      .hero{min-height:auto}
-      .hero::before{
-        position:relative;
-        display:block;
-        left:auto;right:auto;top:auto;bottom:auto;
-        width:100%;height:58vh;min-height:480px;
-        background-position:center 24%;
-      }
-      .hero::after{display:none}
-      .hero-shell{display:block;min-height:0}
-      .hero-copy{max-width:none;padding:54px 0 72px}
-      .hero-copy h1{font-size:clamp(3.25rem,9vw,5.3rem)}
-      .carrier-shell{grid-template-columns:1fr}
-      .carrier-story{min-height:610px}
-      .carrier-content{padding:70px 7vw 82px}
-      .about-grid{grid-template-columns:1fr;min-height:0}
-      .about-photo{order:1;min-height:600px}
-      .about-photo img{min-height:600px}
-      .about-copy{order:2;padding:72px 7vw 82px}
-      .options-intro{margin-left:0;padding-left:38px;border-radius:30px}
-    }
-    @media (max-width:740px){
-      .header{background:rgba(10,17,21,.94)}
-      .hero::before{height:54vh;min-height:410px;background-position:center 23%}
-      .hero-copy{padding:42px 0 60px}
-      .hero-copy h1{font-size:clamp(3rem,14vw,4.7rem)}
-      .hero-copy .lead{font-size:.94rem}
-      .carrier-story{min-height:500px}
-      .carrier-quote{left:14px;right:14px;bottom:14px;padding:18px;border-radius:17px}
-      .carrier-quote strong{font-size:1.5rem}
-      .carrier-content{padding:56px 18px 66px}
-      .carrier-grid{grid-template-columns:1fr}
-      .carrier-card{min-height:88px}
-      .about-photo{min-height:500px}
-      .about-photo img{min-height:500px}
-      .about-copy{padding:58px 20px 68px}
-    }
-
-
-
-    /* V7 — fully integrated imagery + calmer personal tone */
-    .hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:23px;color:#ccd6d8;font-size:.74rem;font-weight:700;letter-spacing:.01em}
-    .hero-meta i{font-style:normal;color:#6e7d81}
-    .carrier-quote{display:none!important}
-    .carrier-story{background:#dcebe7}
-    .carrier-story img{object-position:center 24%}
-    .carrier-content{background:#f3f8f6}
-    .about-copy p{font-size:1rem;line-height:1.78}
-    .about-copy .promise-grid{margin-top:28px}
-    .result.not-eligible{display:block;background:#fff0f1;border-color:#ffc4ca}
-    .result.not-eligible strong{color:#b42333}
-    .result.not-eligible p{color:#7f3640}
-    .result.eligible{display:block;background:#eaf8f1;border-color:#ccefe4}
-    .result.eligible strong{color:#08685f}
-    .booking-email{display:inline-flex;margin-top:14px;color:#fff;text-underline-offset:4px;font-size:.82rem;font-weight:700}
-    .footer-links{align-items:center}
-    @media (max-width:740px){
-      .hero-meta{font-size:.68rem;gap:7px}
-      .carrier-story{min-height:470px}
-    }
-
 </style>
 </head>
 <body id="top">
@@ -701,17 +451,17 @@
     <div class="container hero-shell">
       <div class="hero-copy">
         <div class="eyebrow" data-i18n="heroEyebrow">Independent Medicare broker · Arizona</div>
-        <h1 data-i18n="heroTitle">Medicare, explained clearly.</h1>
-        <p class="lead" data-i18n="heroLead">I’m <strong>Lucy Encarnación</strong>. I help you review Medicare Advantage and Part D in clear language, compare available options, and understand what matters before you make a decision.</p>
+        <h1 data-i18n="heroTitle">Medicare feels lighter when someone truly listens.</h1>
+        <p class="lead" data-i18n="heroLead">I’m <strong>Lucy Encarnación</strong>. I help you understand Medicare Advantage and Part D in plain language, compare what is available where you live, and stay close when questions come later.</p>
         <div class="hero-cta">
           <button class="btn btn-primary js-scroll-book" type="button" data-i18n="heroBook">Book a free conversation</button>
           <a class="btn btn-dark" href="tel:+14846652494" data-i18n="callLucy">Call Lucy</a>
           <a class="btn btn-soft" href="https://wa.me/14846652494" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
         </div>
-        <div class="hero-meta">
-          <span data-i18n="trust1">Serving Arizona + Rhode Island</span><i>•</i>
-          <span data-i18n="trust2">English + Español</span><i>•</i>
-          <span data-i18n="trust3">No-cost guidance</span>
+        <div class="trust-points">
+          <span class="trust-pill" data-i18n="trust1">Serving all Arizona</span>
+          <span class="trust-pill" data-i18n="trust2">English + Español</span>
+          <span class="trust-pill" data-i18n="trust3">Personal guidance at no cost to you</span>
         </div>
       </div>
 
@@ -737,7 +487,7 @@
     <div class="container options-shell">
       <div class="options-intro">
         <div class="eyebrow" data-i18n="optionsEyebrow">Your Medicare options</div>
-        <h2 data-i18n="optionsTitle">Understand your coverage. Choose with confidence.</h2>
+        <h2 data-i18n="optionsTitle">Less jargon. More clarity.</h2>
         <p data-i18n="optionsLead">We focus on the two areas you asked us to help with, then explain the details in a way that is easy to compare.</p>
       </div>
       <div class="option-stack">
@@ -773,8 +523,8 @@
     <div class="container check-grid">
       <div class="check-copy">
         <div class="eyebrow" data-i18n="checkEyebrow">A simple starting point</div>
-        <h2 data-i18n="checkTitle">Three questions to see if this consultation fits.</h2>
-        <p data-i18n="checkLead">Answer these three questions. If you meet the consultation criteria, we’ll take you directly to WhatsApp.</p>
+        <h2 data-i18n="checkTitle">Three questions. A clearer place to begin.</h2>
+        <p data-i18n="checkLead">This quick check is designed to help you know whether it makes sense to have a conversation. No name, phone number, or medical information is required.</p>
       </div>
       <div class="quiz-card">
         <div class="question" data-q="age">
@@ -782,11 +532,11 @@
           <div class="option-row"><button class="quiz-option" data-value="yes" data-i18n="yes">Yes</button><button class="quiz-option" data-value="no" data-i18n="no">No</button><button class="quiz-option" data-value="unsure" data-i18n="unsure">Not sure</button></div>
         </div>
         <div class="question" data-q="work">
-          <h3 data-i18n="q2">Have you or your spouse worked and paid Medicare taxes for at least 10 years?</h3>
+          <h3 data-i18n="q2">Have you or your spouse worked and paid Medicare taxes for about 10 years?</h3>
           <div class="option-row"><button class="quiz-option" data-value="yes" data-i18n="yes">Yes</button><button class="quiz-option" data-value="no" data-i18n="no">No</button><button class="quiz-option" data-value="unsure" data-i18n="unsure">Not sure</button></div>
         </div>
         <div class="question" data-q="disability">
-          <h3 data-i18n="q3">Do you have a registered disability?</h3>
+          <h3 data-i18n="q3">Do you receive qualifying disability benefits or have a condition that may qualify?</h3>
           <div class="option-row"><button class="quiz-option" data-value="yes" data-i18n="yes">Yes</button><button class="quiz-option" data-value="no" data-i18n="no">No</button><button class="quiz-option" data-value="unsure" data-i18n="unsure">Not sure</button></div>
         </div>
         <div class="quiz-actions"><button class="btn btn-primary" id="checkEligibility" type="button" data-i18n="checkButton">Check my starting point</button><button class="btn btn-soft" id="resetQuiz" type="button" data-i18n="reset">Reset</button></div>
@@ -814,11 +564,16 @@
     <div class="container carrier-shell">
       <div class="carrier-story">
         <img src="lucy3.jpeg" alt="Lucy Encarnación providing personal insurance guidance" />
+        <div class="carrier-quote">
+          <div class="quote-mark">“</div>
+          <strong data-i18n="carrierQuote">A good plan matters. Feeling understood matters too.</strong>
+          <span data-i18n="carrierQuoteSub">That is why every comparison starts with a conversation.</span>
+        </div>
       </div>
       <div class="carrier-content">
         <div class="eyebrow" data-i18n="carrierEyebrow">Carrier relationships</div>
-        <h2 data-i18n="carrierTitle">Associated insurance carriers.</h2>
-        <p data-i18n="carrierLead">Carrier and plan availability varies by location and eligibility. I can help you review the options available in your service area.</p>
+        <h2 data-i18n="carrierTitle">Recognized names. Guidance that stays personal.</h2>
+        <p data-i18n="carrierLead">I review plan availability by county and help you compare the details that matter to your life—not just what looks good on a brochure.</p>
         <div class="carrier-grid">
           <div class="carrier-card"><div class="carrier-mark">UHC</div><div><strong>UnitedHealthcare</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
           <div class="carrier-card"><div class="carrier-mark">H</div><div><strong>Humana</strong><small data-i18n="carrierNote">Reviewed based on availability</small></div></div>
@@ -837,12 +592,13 @@
       <div class="about-photo"><img src="lucy2.jpeg" alt="Lucy Encarnación" /></div>
       <div class="about-copy">
         <div class="eyebrow" data-i18n="aboutEyebrow">Meet your broker</div>
-        <h2 data-i18n="aboutTitle">A little about me.</h2>
-        <p data-i18n="aboutText">My name is Lucy Encarnación, and I work as an insurance broker helping people understand their Medicare options in a simple and approachable way. I value honesty, empathy, and dedication in my work. My faith in God through Christ is part of who I am and of the values I try to bring to the way I serve others each day.</p>
+        <h2 data-i18n="aboutTitle">A little about Lucy.</h2>
+        <p data-i18n="aboutText">My name is Lucy Encarnación, and I enjoy helping people understand their Medicare options in a clear and caring way. I consider myself a person who is passionate about serving others with honesty, empathy, and dedication. I am a woman of faith, devoted to God through Christ, and I try to reflect those values in the way I treat and serve each person.</p>
+        <div class="faith-note" data-i18n="faithNote">My goal is to offer a service that feels clear, respectful, and genuinely helpful from the very first conversation.</div>
         <div class="promise-grid">
-          <div class="promise"><b data-i18n="promise1Title">I listen first</b><span data-i18n="promise1Text">Your needs come before the plan.</span></div>
-          <div class="promise"><b data-i18n="promise2Title">I explain clearly</b><span data-i18n="promise2Text">No unnecessary insurance language.</span></div>
-          <div class="promise"><b data-i18n="promise3Title">I stay connected</b><span data-i18n="promise3Text">Support does not end after enrollment.</span></div>
+          <div class="promise"><b data-i18n="promise1Title">I listen first</b><span data-i18n="promise1Text">We begin with your situation, not with a sales script.</span></div>
+          <div class="promise"><b data-i18n="promise2Title">I explain clearly</b><span data-i18n="promise2Text">I keep the process simple and easy to follow.</span></div>
+          <div class="promise"><b data-i18n="promise3Title">I stay available</b><span data-i18n="promise3Text">If questions come up later, you can still reach out.</span></div>
         </div>
       </div>
     </div>
@@ -854,7 +610,7 @@
         <div class="eyebrow" data-i18n="bookingEyebrow">A conversation, your way</div>
         <h2 data-i18n="bookingTitle">When you’re ready, I’m here.</h2>
         <p data-i18n="bookingLead">Choose the way you prefer to meet. Your appointment will open directly from the available calendar schedule.</p>
-        <a class="booking-email" href="mailto:loeparedes4@gmail.com">loeparedes4@gmail.com</a>
+        <div class="contact-line"><a href="mailto:loeparedes4@gmail.com">loeparedes4@gmail.com</a></div>
       </div>
       <div class="booking-options">
         <article class="booking-card">
@@ -890,7 +646,7 @@
         <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a>
         <a href="tel:+14846652494" data-i18n="callUs">Call</a>
         <a href="https://wa.me/14846652494" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:loeparedes4@gmail.com">loeparedes4@gmail.com</a>
+        <a href="mailto:loeparedes4@gmail.com">Email</a>
       </div>
     </div>
     <div class="compliance" data-i18n="footerLegal">LOE Insurance Broker is not affiliated with or endorsed by the U.S. government or the federal Medicare program. Plan availability, benefits, networks, formularies, premiums, costs, and eligibility vary by plan and service area.</div>
@@ -904,30 +660,30 @@
 </div>
 
 <script>
-  const IN_PERSON_BOOKING_URL = "";
-  const PHONE_BOOKING_URL = "";
+  const IN_PERSON_BOOKING_URL = ""; // add your Google Calendar booking link here
+  const PHONE_BOOKING_URL = ""; // add your Google Calendar booking link here
 
   const copy = {
     en:{
-      navMedicare:'Medicare',navCheck:'Quick check',navCarriers:'Carriers',navLucy:'Meet Lucy',navBook:'Appointment',bookFree:'Book a free conversation',
-      heroEyebrow:'Independent Medicare broker · Arizona + Rhode Island',heroTitle:'Medicare, explained clearly.',heroLead:'I’m <strong>Lucy Encarnación</strong>. I help you review Medicare Advantage and Part D in clear language, compare available options, and understand what matters before you make a decision.',heroBook:'Book a free conversation',callLucy:'Call Lucy',whatsapp:'WhatsApp',trust1:'Serving Arizona + Rhode Island',trust2:'English + Español',trust3:'No-cost guidance',heroNameSub:'Independent Medicare broker · Arizona + Rhode Island · Bilingual',heroFloatEyebrow:'Medicare review',heroFloatTitle:'Clear answers, simple next steps.',heroFloatText:'Medicare Advantage and Part D, explained simply.',
-      optionsEyebrow:'Your Medicare options',optionsTitle:'Understand your coverage. Choose with confidence.',optionsLead:'We focus on the two areas you asked us to help with, then explain the details in a way that is easy to compare.',partCTitle:'Medicare Advantage · Part C',partCText:'Medicare Advantage plans are offered by private insurance companies approved by Medicare and provide your Part A and Part B benefits. Many plans also include Part D prescription coverage and may offer additional benefits.',partC1:'Networks & costs',partC2:'County availability',partC3:'Possible extra benefits',partDTitle:'Prescription drug coverage · Part D',partDText:'Part D helps cover prescription drugs. We can review your medications, plan formularies, participating pharmacies, and available options so the comparison feels practical—not abstract.',partD1:'Medication review',partD2:'Formularies',partD3:'Pharmacy networks',
-      checkEyebrow:'A simple starting point',checkTitle:'Three questions to see if this consultation fits.',checkLead:'Answer these three questions. If you meet the consultation criteria, we’ll take you directly to WhatsApp.',q1:'Are you age 65 or older?',q2:'Have you or your spouse worked and paid Medicare taxes for at least 10 years?',q3:'Do you have a registered disability?',yes:'Yes',no:'No',unsure:'Not sure',checkButton:'Check my starting point',reset:'Reset',quizNote:'This check is only used to determine whether this consultation fits our current service criteria. It does not determine official Medicare eligibility.',resultLikelyTitle:'You meet the starting criteria for this consultation.',resultLikelyText:'We’re opening WhatsApp so you can continue directly with Lucy.',resultReviewTitle:'Not eligible for this consultation right now.',resultReviewText:'Based on the answers provided, you do not meet the starting criteria for this consultation. This does not determine your official Medicare eligibility.',resultMissingTitle:'Answer all three questions first.',resultMissingText:'Choose one answer for each question, then check your starting point.',
+      navMedicare:'Medicare',navCheck:'Quick check',navCarriers:'Associated plans',navLucy:'About Lucy',navBook:'Appointment',bookFree:'Book a free consultation',
+      heroEyebrow:'Independent Medicare broker · Arizona & Rhode Island',heroTitle:'Understanding Medicare should feel clearer, calmer, and more personal.',heroLead:'I’m <strong>Lucy Encarnación</strong>. I help you understand Medicare Advantage and Part D in plain language, compare what is available where you live, and move forward with clear, personal guidance.',heroBook:'Book a free consultation',callLucy:'Call Lucy',whatsapp:'WhatsApp',trust1:'Arizona + Rhode Island',trust2:'English + Español',trust3:'No-cost consultation',heroNameSub:'Independent Medicare broker · Arizona & Rhode Island · Bilingual',heroFloatEyebrow:'Personal review',heroFloatTitle:'Clear guidance before decisions.',heroFloatText:'A real conversation, without pressure and without unnecessary confusion.',
+      optionsEyebrow:'Your Medicare options',optionsTitle:'Less jargon. More clarity.',optionsLead:'We focus on the two areas you asked us to help with, then explain the details in a way that is easy to compare.',partCTitle:'Medicare Advantage · Part C',partCText:'Medicare Advantage plans are offered by private insurance companies approved by Medicare and provide your Part A and Part B benefits. Many plans also include Part D prescription coverage and may offer additional benefits.',partC1:'Networks & costs',partC2:'County availability',partC3:'Possible extra benefits',partDTitle:'Prescription drug coverage · Part D',partDText:'Part D helps cover prescription drugs. We can review your medications, plan formularies, participating pharmacies, and available options so the comparison feels practical—not abstract.',partD1:'Medication review',partD2:'Formularies',partD3:'Pharmacy networks',
+      checkEyebrow:'A simple starting point',checkTitle:'Three questions. A clearer place to begin.',checkLead:'This quick check helps determine whether this consultation is the right fit. No name, phone number, or medical information is required.',q1:'Are you age 65 or older?',q2:'Have you or your spouse worked and paid Medicare taxes for about 10 years?',q3:'Do you have a registered disability?' ,yes:'Yes',no:'No',unsure:'Not sure',checkButton:'Check this consultation',reset:'Reset',quizNote:'This screening only determines whether this consultation is a fit based on the criteria above. It does not determine official Medicare eligibility.',resultLikelyTitle:'You are a good fit for this consultation.',resultLikelyText:'Based on your answers, the next step is to contact Lucy directly on WhatsApp for a personal review.',resultReviewTitle:'Not eligible for this consultation.',resultReviewText:'Based on the criteria for this consultation, you are not a fit at this time.',resultMissingTitle:'Answer all three questions first.',resultMissingText:'Choose one answer for each question before continuing.',
       helpEyebrow:'Help with costs',helpTitle:'When every dollar matters, we look closer.',helpLead:'Some people may qualify for programs or plan options that can make prescription and healthcare costs easier to manage.',extraTitle:'Extra Help',extraText:'Extra Help is a Medicare program that can help people with limited income and resources pay certain Part D prescription drug costs.',dualTitle:'Medicare + Medicaid',dualText:'People who have both Medicare and Medicaid may have access to plan options designed to coordinate their coverage and benefits.',
-      carrierQuote:'Your plan should fit your life—not the other way around.',carrierQuoteSub:'That is why every comparison starts with a conversation.',carrierEyebrow:'Associated insurance carriers',carrierTitle:'Associated insurance carriers.',carrierLead:'Carrier and plan availability varies by location and eligibility. I can help you review the options available in your service area.',carrierNote:'Reviewed based on availability',rhodeIsland:'Rhode Island only',carrierDisclaimer:'Carrier and plan availability varies by county, eligibility, service area, and plan year.',
-      aboutEyebrow:'About Lucy',aboutTitle:'A little about me.',aboutText:'My name is Lucy Encarnación, and I work as an insurance broker helping people understand their Medicare options in a simple and approachable way. I value honesty, empathy, and dedication in my work. My faith in God through Christ is part of who I am and of the values I try to bring to the way I serve others each day.',faithNote:'My faith guides the way I serve: with honesty, empathy, respect, and dedication.',promise1Title:'Bilingual service',promise1Text:'Support in English and Spanish.',promise2Title:'Clear explanations',promise2Text:'Medicare without unnecessary jargon.',promise3Title:'Ongoing support',promise3Text:'Help when questions come up later.',
-      bookingEyebrow:'A conversation, your way',bookingTitle:'A conversation can make everything clearer.',bookingLead:'Choose the way you prefer to meet. Your appointment will open directly from the available calendar schedule.',inPersonTitle:'In-person appointment',inPersonText:'Meet face to face. In-person appointments are available on Mondays.',inPersonButton:'See Monday times',phoneTitle:'Phone appointment',phoneText:'Choose any phone appointment shown as available in the calendar.',phoneButton:'See available times',calendarMissing:'The Google Calendar booking link has not been connected yet. Add the booking URL in index.html and this button will open the live schedule.',
+      carrierQuote:'Good coverage matters. Clear guidance matters too.',carrierQuoteSub:'Every comparison begins by understanding your needs first.',carrierEyebrow:'Associated insurance carriers',carrierTitle:'Associated insurance carriers.',carrierLead:'I review plan availability by county and help you compare the details that matter most for your coverage, prescriptions, and budget.',carrierNote:'Reviewed based on availability',rhodeIsland:'Rhode Island only',carrierDisclaimer:'Carrier and plan availability varies by county, eligibility, service area, and plan year.',
+      aboutEyebrow:'Meet Lucy',aboutTitle:'A little about Lucy.',aboutText:'My name is Lucy Encarnación, and I enjoy helping people understand their Medicare options in a clear and caring way. I consider myself a person who is passionate about serving others with honesty, empathy, and dedication. I am a woman of faith, devoted to God through Christ, and I try to reflect those values in the way I treat and serve each person.',faithNote:'My goal is to offer a service that feels clear, respectful, and genuinely helpful from the very first conversation.',promise1Title:'I listen first',promise1Text:'We begin with your situation, not with a sales script.',promise2Title:'I explain clearly',promise2Text:'I keep the process simple and easy to follow.',promise3Title:'I stay available',promise3Text:'If questions come up later, you can still reach out.',
+      bookingEyebrow:'A conversation, your way',bookingTitle:'When you’re ready, I’m here.',bookingLead:'Choose the way you prefer to connect. Your appointment will open directly from the available calendar schedule.',inPersonTitle:'In-person appointment',inPersonText:'Meet face to face. In-person appointments are available on Mondays.',inPersonButton:'See Monday times',phoneTitle:'Phone appointment',phoneText:'Choose any phone appointment shown as available in the calendar.',phoneButton:'See available times',calendarMissing:'The Google Calendar booking link has not been connected yet. Add the booking URL in index.html and this button will open the live schedule.',
       footerService:'Independent insurance broker serving Arizona and Rhode Island with Medicare Advantage and Medicare Part D guidance in English and Spanish.',callUs:'Call',footerLegal:'LOE Insurance Broker is not affiliated with or endorsed by the U.S. government or the federal Medicare program. Plan availability, benefits, networks, formularies, premiums, costs, and eligibility vary by plan and service area.',mobileCall:'Call',mobileBook:'Book'
     },
     es:{
-      navMedicare:'Medicare',navCheck:'Comprobación rápida',navCarriers:'Aseguradoras',navLucy:'Conoce a Lucy',navBook:'Cita',bookFree:'Agenda una conversación gratis',
-      heroEyebrow:'Broker independiente de Medicare · Arizona + Rhode Island',heroTitle:'Medicare, explicado con claridad.',heroLead:'Soy <strong>Lucy Encarnación</strong>. Te ayudo a revisar Medicare Advantage y la Parte D con palabras claras, comparar las opciones disponibles y entender lo importante antes de tomar una decisión.',heroBook:'Agenda una conversación gratis',callLucy:'Llama a Lucy',whatsapp:'WhatsApp',trust1:'Atención en Arizona + Rhode Island',trust2:'English + Español',trust3:'Orientación sin costo',heroNameSub:'Broker independiente de Medicare · Arizona + Rhode Island · Bilingüe',heroFloatEyebrow:'Revisión de Medicare',heroFloatTitle:'Respuestas claras. Próximos pasos simples.',heroFloatText:'Medicare Advantage y Parte D, explicado de forma sencilla.',
-      optionsEyebrow:'Tus opciones de Medicare',optionsTitle:'Entiende tu cobertura. Elige con confianza.',optionsLead:'Nos enfocamos en las dos áreas en las que quieres ayuda y explicamos los detalles de una forma fácil de comparar.',partCTitle:'Medicare Advantage · Parte C',partCText:'Los planes Medicare Advantage son ofrecidos por compañías privadas aprobadas por Medicare y brindan los beneficios de las Partes A y B. Muchos planes también incluyen cobertura de medicamentos Parte D y pueden ofrecer beneficios adicionales.',partC1:'Redes y costos',partC2:'Disponibilidad por condado',partC3:'Posibles beneficios adicionales',partDTitle:'Cobertura de medicamentos · Parte D',partDText:'La Parte D ayuda a cubrir medicamentos recetados. Podemos revisar tus medicamentos, formularios, farmacias participantes y opciones disponibles para que la comparación sea práctica y fácil de entender.',partD1:'Revisión de medicamentos',partD2:'Formularios',partD3:'Red de farmacias',
-      checkEyebrow:'Un punto de partida sencillo',checkTitle:'Tres preguntas para saber si esta consulta aplica para ti.',checkLead:'Responde estas tres preguntas. Si cumples los criterios de la consulta, te llevamos directamente a WhatsApp.',q1:'¿Tienes 65 años o más?',q2:'¿Tú o tu cónyuge han trabajado y cotizado para Medicare durante al menos 10 años?',q3:'¿Tienes una discapacidad registrada?',yes:'Sí',no:'No',unsure:'No estoy seguro',checkButton:'Revisar mi punto de partida',reset:'Reiniciar',quizNote:'Esta comprobación solo sirve para saber si esta consulta aplica según nuestros criterios actuales. No determina la elegibilidad oficial para Medicare.',resultLikelyTitle:'Cumples los criterios iniciales para esta consulta.',resultLikelyText:'Estamos abriendo WhatsApp para que puedas continuar directamente con Lucy.',resultReviewTitle:'No apto para esta consulta en este momento.',resultReviewText:'Según las respuestas indicadas, no cumples los criterios iniciales de esta consulta. Esto no determina tu elegibilidad oficial para Medicare.',resultMissingTitle:'Responde primero las tres preguntas.',resultMissingText:'Elige una respuesta para cada pregunta y luego revisa tu punto de partida.',
+      navMedicare:'Medicare',navCheck:'Comprobación rápida',navCarriers:'Seguros asociados',navLucy:'Sobre Lucy',navBook:'Cita',bookFree:'Agenda una consulta gratis',
+      heroEyebrow:'Broker independiente de Medicare · Arizona y Rhode Island',heroTitle:'Entender Medicare puede sentirse más claro, más tranquilo y más personal.',heroLead:'Soy <strong>Lucy Encarnación</strong>. Te ayudo a entender Medicare Advantage y la Parte D con palabras claras, comparar lo disponible donde vives y avanzar con una orientación clara y personal.',heroBook:'Agenda una consulta gratis',callLucy:'Llama a Lucy',whatsapp:'WhatsApp',trust1:'Arizona + Rhode Island',trust2:'English + Español',trust3:'Consulta sin costo',heroNameSub:'Broker independiente de Medicare · Arizona y Rhode Island · Bilingüe',heroFloatEyebrow:'Revisión personal',heroFloatTitle:'Guía clara antes de decidir.',heroFloatText:'Una conversación real, sin presión y sin complicaciones innecesarias.',
+      optionsEyebrow:'Tus opciones de Medicare',optionsTitle:'Menos términos. Más claridad.',optionsLead:'Nos enfocamos en las dos áreas en las que quieres ayuda y explicamos los detalles de una forma fácil de comparar.',partCTitle:'Medicare Advantage · Parte C',partCText:'Los planes Medicare Advantage son ofrecidos por compañías privadas aprobadas por Medicare y brindan los beneficios de las Partes A y B. Muchos planes también incluyen cobertura de medicamentos Parte D y pueden ofrecer beneficios adicionales.',partC1:'Redes y costos',partC2:'Disponibilidad por condado',partC3:'Posibles beneficios adicionales',partDTitle:'Cobertura de medicamentos · Parte D',partDText:'La Parte D ayuda a cubrir medicamentos recetados. Podemos revisar tus medicamentos, formularios, farmacias participantes y opciones disponibles para que la comparación sea práctica y fácil de entender.',partD1:'Revisión de medicamentos',partD2:'Formularios',partD3:'Red de farmacias',
+      checkEyebrow:'Un punto de partida sencillo',checkTitle:'Tres preguntas. Un comienzo más claro.',checkLead:'Esta comprobación rápida ayuda a determinar si esta consulta es adecuada para ti. No necesitas escribir tu nombre, teléfono ni información médica.',q1:'¿Tienes 65 años o más?',q2:'¿Tú o tu cónyuge han trabajado y pagado impuestos de Medicare durante aproximadamente 10 años?',q3:'¿Tienes una discapacidad registrada?' ,yes:'Sí',no:'No',unsure:'No estoy seguro',checkButton:'Revisar esta consulta',reset:'Reiniciar',quizNote:'Esta comprobación solo determina si esta consulta es adecuada según los criterios anteriores. No determina la elegibilidad oficial para Medicare.',resultLikelyTitle:'Sí eres apto para esta consulta.',resultLikelyText:'Según tus respuestas, el siguiente paso es contactar directamente por WhatsApp a Lucy para una revisión personal.',resultReviewTitle:'No eres apto para esta consulta.',resultReviewText:'Según los criterios de esta consulta, por el momento no eres apto.',resultMissingTitle:'Responde primero las tres preguntas.',resultMissingText:'Elige una respuesta para cada pregunta antes de continuar.',
       helpEyebrow:'Ayuda con los costos',helpTitle:'Cuando cada dólar importa, miramos más de cerca.',helpLead:'Algunas personas pueden calificar para programas u opciones de planes que ayudan a manejar mejor los costos de medicamentos y atención médica.',extraTitle:'Extra Help',extraText:'Extra Help es un programa de Medicare que puede ayudar a personas con ingresos y recursos limitados a pagar ciertos costos de medicamentos de la Parte D.',dualTitle:'Medicare + Medicaid',dualText:'Las personas que tienen Medicare y Medicaid pueden tener acceso a opciones de planes diseñadas para coordinar su cobertura y beneficios.',
-      carrierQuote:'Tu plan debe adaptarse a tu vida, no al revés.',carrierQuoteSub:'Por eso cada comparación comienza con una conversación.',carrierEyebrow:'Seguros asociados',carrierTitle:'Aseguradoras asociadas.',carrierLead:'La disponibilidad de compañías y planes varía según la zona y la elegibilidad. Puedo ayudarte a revisar las opciones disponibles en tu área de servicio.',carrierNote:'Revisado según disponibilidad',rhodeIsland:'Solo Rhode Island',carrierDisclaimer:'La disponibilidad de compañías y planes varía según el condado, la elegibilidad, el área de servicio y el año del plan.',
-      aboutEyebrow:'Sobre Lucy',aboutTitle:'Un poco sobre mí.',aboutText:'Mi nombre es Lucy Encarnación y trabajo como broker de seguros ayudando a las personas a entender sus opciones de Medicare de una forma sencilla y cercana. Valoro la honestidad, la empatía y la dedicación en mi trabajo. Mi fe en Dios a través de Cristo forma parte de quién soy y de los valores que procuro reflejar en la manera de servir a los demás cada día.',faithNote:'Mi fe guía mi manera de servir: con honestidad, empatía, respeto y dedicación.',promise1Title:'Atención bilingüe',promise1Text:'Atención en inglés y español.',promise2Title:'Explicaciones claras',promise2Text:'Medicare sin términos innecesariamente complicados.',promise3Title:'Seguimiento',promise3Text:'Ayuda cuando surjan preguntas después.',
-      bookingEyebrow:'Una conversación a tu manera',bookingTitle:'Una conversación puede aclararlo todo.',bookingLead:'Elige cómo prefieres reunirnos. Tu cita se abrirá directamente desde los horarios disponibles del calendario.',inPersonTitle:'Cita presencial',inPersonText:'Reúnete cara a cara. Las citas presenciales están disponibles los lunes.',inPersonButton:'Ver horarios del lunes',phoneTitle:'Cita telefónica',phoneText:'Elige cualquier cita telefónica que aparezca disponible en el calendario.',phoneButton:'Ver horarios disponibles',calendarMissing:'El enlace de reservas de Google Calendar todavía no está conectado. Añade la URL de reserva en index.html y este botón abrirá el calendario real.',
+      carrierQuote:'Una buena cobertura importa. Una guía clara también.',carrierQuoteSub:'Cada comparación comienza entendiendo primero tus necesidades.',carrierEyebrow:'Seguros asociados',carrierTitle:'Aseguradoras asociadas.',carrierLead:'Reviso la disponibilidad de planes por condado y te ayudo a comparar los detalles que más importan para tu cobertura, tus medicamentos y tu presupuesto.',carrierNote:'Revisado según disponibilidad',rhodeIsland:'Solo Rhode Island',carrierDisclaimer:'La disponibilidad de compañías y planes varía según el condado, la elegibilidad, el área de servicio y el año del plan.',
+      aboutEyebrow:'Conoce a Lucy',aboutTitle:'Un poco sobre Lucy.',aboutText:'Mi nombre es Lucy Encarnación y disfruto ayudar a las personas a entender sus opciones de Medicare de una forma clara y cercana. Me considero una persona apasionada por servir a los demás con honestidad, empatía y dedicación. Soy una mujer de fe, amante y fiel a Dios a través de Cristo, y procuro reflejar esos valores en la manera en que trato y sirvo a cada persona.',faithNote:'Mi objetivo es ofrecer un servicio que se sienta claro, respetuoso y verdaderamente útil desde la primera conversación.',promise1Title:'Primero te escucho',promise1Text:'Primero entendemos tu situación, no un guion de ventas.',promise2Title:'Te explico con claridad',promise2Text:'Mantengo el proceso simple y fácil de seguir.',promise3Title:'Sigo disponible',promise3Text:'Si luego surgen preguntas, puedes volver a escribirme.',
+      bookingEyebrow:'Una conversación a tu manera',bookingTitle:'Cuando estés listo, aquí estoy.',bookingLead:'Elige cómo prefieres conectar. Tu cita se abrirá directamente desde los horarios disponibles del calendario.',inPersonTitle:'Cita presencial',inPersonText:'Reúnete cara a cara. Las citas presenciales están disponibles los lunes.',inPersonButton:'Ver horarios del lunes',phoneTitle:'Cita telefónica',phoneText:'Elige cualquier cita telefónica que aparezca disponible en el calendario.',phoneButton:'Ver horarios disponibles',calendarMissing:'El enlace de reservas de Google Calendar todavía no está conectado. Añade la URL de reserva en index.html y este botón abrirá el calendario real.',
       footerService:'Broker de seguros independiente que atiende Arizona y Rhode Island con orientación sobre Medicare Advantage y Medicare Parte D en inglés y español.',callUs:'Llamar',footerLegal:'LOE Insurance Broker no está afiliado ni respaldado por el gobierno de Estados Unidos ni por el programa federal Medicare. La disponibilidad de planes, beneficios, redes, formularios, primas, costos y elegibilidad varía según el plan y el área de servicio.',mobileCall:'Llamar',mobileBook:'Cita'
     }
   };
@@ -966,41 +722,37 @@
     const result = document.getElementById('quizResult');
     const title = document.getElementById('resultTitle');
     const text = document.getElementById('resultText');
-    result.classList.remove('not-eligible','eligible');
+    const whatsappMessage = currentLang==='es'
+      ? 'Hola Lucy, he completado la comprobación rápida en la web y soy apto para la consulta. Me gustaría continuar.'
+      : 'Hello Lucy, I completed the quick check on the website and I qualify for the consultation. I would like to continue.';
+    const whatsappUrl = 'https://wa.me/14846652494?text=' + encodeURIComponent(whatsappMessage);
 
-    // A registered disability qualifies for this consultation regardless of age/work answers.
-    const disabilityRoute = answers.disability === 'yes';
-    const ageWorkRoute = answers.age === 'yes' && answers.work === 'yes';
-
-    if(disabilityRoute || ageWorkRoute){
-      title.textContent = copy[currentLang].resultLikelyTitle;
-      text.textContent = copy[currentLang].resultLikelyText;
-      result.classList.add('show','eligible');
-      const message = currentLang === 'es'
-        ? 'Hola Lucy, completé las preguntas de la web y cumplo los criterios iniciales para una consulta sobre Medicare. Quisiera recibir orientación.'
-        : 'Hello Lucy, I completed the website questions and meet the starting criteria for a Medicare consultation. I would like guidance.';
-      setTimeout(()=>{
-        window.location.href = 'https://wa.me/14846652494?text=' + encodeURIComponent(message);
-      }, 650);
-      return;
-    }
+    result.classList.remove('error','success','info');
 
     if(!answers.age || !answers.work || !answers.disability){
       title.textContent = copy[currentLang].resultMissingTitle;
       text.textContent = copy[currentLang].resultMissingText;
-      result.classList.add('show');
+      result.classList.add('show','info');
+      return;
+    }
+
+    if(answers.disability==='yes' || (answers.age==='yes' && answers.work==='yes')){
+      title.textContent = copy[currentLang].resultLikelyTitle;
+      text.textContent = copy[currentLang].resultLikelyText;
+      result.classList.add('show','success');
+      window.open(whatsappUrl,'_blank','noopener');
       return;
     }
 
     title.textContent = copy[currentLang].resultReviewTitle;
     text.textContent = copy[currentLang].resultReviewText;
-    result.classList.add('show','not-eligible');
+    result.classList.add('show','error');
   });
 
   document.getElementById('resetQuiz').addEventListener('click',()=>{
     Object.keys(answers).forEach(k=>delete answers[k]);
     document.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('active'));
-    document.getElementById('quizResult').classList.remove('show','not-eligible','eligible');
+    document.getElementById('quizResult').classList.remove('show','error','success','info');
   });
 
   function openBooking(url){
