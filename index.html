@@ -627,7 +627,7 @@
             <h3 data-i18n="phoneTitle">Phone appointment</h3>
             <p data-i18n="phoneText">Choose any phone appointment shown as available in the calendar.</p>
           </div>
-          <button class="btn btn-dark js-book-phone" type="button" data-i18n="phoneButton">See available times</button>
+          <a class="btn btn-dark" href="https://wa.me/14846652494?text=Hello%20Lucy%2C%20I%20would%20like%20to%20schedule%20a%20phone%20appointment." target="_blank" rel="noopener" data-i18n="phoneButton">Schedule by WhatsApp</a>
         </article>
         <div class="calendar-message" id="calendarMessage"></div>
       </div>
@@ -661,7 +661,6 @@
 
 <script>
   const IN_PERSON_BOOKING_URL = ""; // add your Google Calendar booking link here
-  const PHONE_BOOKING_URL = ""; // add your Google Calendar booking link here
 
   const copy = {
     en:{
@@ -672,7 +671,7 @@
       helpEyebrow:'Help with costs',helpTitle:'When every dollar matters, we look closer.',helpLead:'Some people may qualify for programs or plan options that can make prescription and healthcare costs easier to manage.',extraTitle:'Extra Help',extraText:'Extra Help is a Medicare program that can help people with limited income and resources pay certain Part D prescription drug costs.',dualTitle:'Medicare + Medicaid',dualText:'People who have both Medicare and Medicaid may have access to plan options designed to coordinate their coverage and benefits.',
       carrierQuote:'Good coverage matters. Clear guidance matters too.',carrierQuoteSub:'Every comparison begins by understanding your needs first.',carrierEyebrow:'Associated insurance carriers',carrierTitle:'Associated insurance carriers.',carrierLead:'I review plan availability by county and help you compare the details that matter most for your coverage, prescriptions, and budget.',carrierNote:'Reviewed based on availability',rhodeIsland:'Rhode Island only',carrierDisclaimer:'Carrier and plan availability varies by county, eligibility, service area, and plan year.',
       aboutEyebrow:'Meet Lucy',aboutTitle:'A little about Lucy.',aboutText:'My name is Lucy Encarnación, and I enjoy helping people understand their Medicare options in a clear and caring way. I consider myself a person who is passionate about serving others with honesty, empathy, and dedication. I am a woman of faith, devoted to God through Christ, and I try to reflect those values in the way I treat and serve each person.',faithNote:'My goal is to offer a service that feels clear, respectful, and genuinely helpful from the very first conversation.',promise1Title:'I listen first',promise1Text:'We begin with your situation, not with a sales script.',promise2Title:'I explain clearly',promise2Text:'I keep the process simple and easy to follow.',promise3Title:'I stay available',promise3Text:'If questions come up later, you can still reach out.',
-      bookingEyebrow:'A conversation, your way',bookingTitle:'When you’re ready, I’m here.',bookingLead:'Choose the way you prefer to connect. Your appointment will open directly from the available calendar schedule.',inPersonTitle:'In-person appointment',inPersonText:'Meet face to face. In-person appointments are available on Mondays.',inPersonButton:'See Monday times',phoneTitle:'Phone appointment',phoneText:'Choose any phone appointment shown as available in the calendar.',phoneButton:'See available times',calendarMissing:'The Google Calendar booking link has not been connected yet. Add the booking URL in index.html and this button will open the live schedule.',
+      bookingEyebrow:'A conversation, your way',bookingTitle:'When you’re ready, I’m here.',bookingLead:'Choose the way you prefer to connect. Your appointment will open directly from the available calendar schedule.',inPersonTitle:'In-person appointment',inPersonText:'Meet face to face. In-person appointments are available on Mondays.',inPersonButton:'See Monday times',phoneTitle:'Phone appointment',phoneText:'For phone appointments, contact Lucy directly on WhatsApp and choose a convenient time together.',phoneButton:'Schedule by WhatsApp',calendarMissing:'The Google Calendar booking link has not been connected yet. Add the booking URL in index.html and this button will open the live schedule.',
       footerService:'Independent insurance broker serving Arizona and Rhode Island with Medicare Advantage and Medicare Part D guidance in English and Spanish.',callUs:'Call',footerLegal:'LOE Insurance Broker is not affiliated with or endorsed by the U.S. government or the federal Medicare program. Plan availability, benefits, networks, formularies, premiums, costs, and eligibility vary by plan and service area.',mobileCall:'Call',mobileBook:'Book'
     },
     es:{
@@ -683,7 +682,7 @@
       helpEyebrow:'Ayuda con los costos',helpTitle:'Cuando cada dólar importa, miramos más de cerca.',helpLead:'Algunas personas pueden calificar para programas u opciones de planes que ayudan a manejar mejor los costos de medicamentos y atención médica.',extraTitle:'Extra Help',extraText:'Extra Help es un programa de Medicare que puede ayudar a personas con ingresos y recursos limitados a pagar ciertos costos de medicamentos de la Parte D.',dualTitle:'Medicare + Medicaid',dualText:'Las personas que tienen Medicare y Medicaid pueden tener acceso a opciones de planes diseñadas para coordinar su cobertura y beneficios.',
       carrierQuote:'Una buena cobertura importa. Una guía clara también.',carrierQuoteSub:'Cada comparación comienza entendiendo primero tus necesidades.',carrierEyebrow:'Seguros asociados',carrierTitle:'Aseguradoras asociadas.',carrierLead:'Reviso la disponibilidad de planes por condado y te ayudo a comparar los detalles que más importan para tu cobertura, tus medicamentos y tu presupuesto.',carrierNote:'Revisado según disponibilidad',rhodeIsland:'Solo Rhode Island',carrierDisclaimer:'La disponibilidad de compañías y planes varía según el condado, la elegibilidad, el área de servicio y el año del plan.',
       aboutEyebrow:'Conoce a Lucy',aboutTitle:'Un poco sobre Lucy.',aboutText:'Mi nombre es Lucy Encarnación y disfruto ayudar a las personas a entender sus opciones de Medicare de una forma clara y cercana. Me considero una persona apasionada por servir a los demás con honestidad, empatía y dedicación. Soy una mujer de fe, amante y fiel a Dios a través de Cristo, y procuro reflejar esos valores en la manera en que trato y sirvo a cada persona.',faithNote:'Mi objetivo es ofrecer un servicio que se sienta claro, respetuoso y verdaderamente útil desde la primera conversación.',promise1Title:'Primero te escucho',promise1Text:'Primero entendemos tu situación, no un guion de ventas.',promise2Title:'Te explico con claridad',promise2Text:'Mantengo el proceso simple y fácil de seguir.',promise3Title:'Sigo disponible',promise3Text:'Si luego surgen preguntas, puedes volver a escribirme.',
-      bookingEyebrow:'Una conversación a tu manera',bookingTitle:'Cuando estés listo, aquí estoy.',bookingLead:'Elige cómo prefieres conectar. Tu cita se abrirá directamente desde los horarios disponibles del calendario.',inPersonTitle:'Cita presencial',inPersonText:'Reúnete cara a cara. Las citas presenciales están disponibles los lunes.',inPersonButton:'Ver horarios del lunes',phoneTitle:'Cita telefónica',phoneText:'Elige cualquier cita telefónica que aparezca disponible en el calendario.',phoneButton:'Ver horarios disponibles',calendarMissing:'El enlace de reservas de Google Calendar todavía no está conectado. Añade la URL de reserva en index.html y este botón abrirá el calendario real.',
+      bookingEyebrow:'Una conversación a tu manera',bookingTitle:'Cuando estés listo, aquí estoy.',bookingLead:'Elige cómo prefieres conectar. Tu cita se abrirá directamente desde los horarios disponibles del calendario.',inPersonTitle:'Cita presencial',inPersonText:'Reúnete cara a cara. Las citas presenciales están disponibles los lunes.',inPersonButton:'Ver horarios del lunes',phoneTitle:'Cita telefónica',phoneText:'Para citas telefónicas, contacta directamente a Lucy por WhatsApp y acuerden juntos el horario.',phoneButton:'Agendar por WhatsApp',calendarMissing:'El enlace de reservas de Google Calendar todavía no está conectado. Añade la URL de reserva en index.html y este botón abrirá el calendario real.',
       footerService:'Broker de seguros independiente que atiende Arizona y Rhode Island con orientación sobre Medicare Advantage y Medicare Parte D en inglés y español.',callUs:'Llamar',footerLegal:'LOE Insurance Broker no está afiliado ni respaldado por el gobierno de Estados Unidos ni por el programa federal Medicare. La disponibilidad de planes, beneficios, redes, formularios, primas, costos y elegibilidad varía según el plan y el área de servicio.',mobileCall:'Llamar',mobileBook:'Cita'
     }
   };
@@ -702,8 +701,18 @@
     document.querySelectorAll('[data-lang]').forEach(btn=>btn.classList.toggle('active', btn.dataset.lang===lang));
   }
 
-  document.querySelectorAll('[data-lang]').forEach(btn=>btn.addEventListener('click',()=>setLanguage(btn.dataset.lang)));
+  document.querySelectorAll('[data-lang]').forEach(btn=>btn.addEventListener('click',()=>{setLanguage(btn.dataset.lang); updatePhoneWhatsapp();}));
   setLanguage(currentLang);
+
+  function updatePhoneWhatsapp(){
+    const phoneBtn=document.querySelector('[data-i18n="phoneButton"]');
+    if(!phoneBtn || phoneBtn.tagName.toLowerCase()!=='a') return;
+    const msg=currentLang==='es'
+      ? 'Hola Lucy, quiero agendar una cita telefónica. ¿Qué horarios tienes disponibles?'
+      : 'Hello Lucy, I would like to schedule a phone appointment. What times do you have available?';
+    phoneBtn.href='https://wa.me/14846652494?text='+encodeURIComponent(msg);
+  }
+  updatePhoneWhatsapp();
 
   document.querySelectorAll('.js-scroll-book').forEach(btn=>btn.addEventListener('click',()=>document.getElementById('book').scrollIntoView({behavior:'smooth'})));
 
@@ -762,7 +771,6 @@
     msg.classList.add('show');
   }
   document.querySelector('.js-book-inperson').addEventListener('click',()=>openBooking(IN_PERSON_BOOKING_URL));
-  document.querySelector('.js-book-phone').addEventListener('click',()=>openBooking(PHONE_BOOKING_URL));
 </script>
 </body>
 </html>
