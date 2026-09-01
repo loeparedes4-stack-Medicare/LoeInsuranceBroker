@@ -688,7 +688,7 @@
   };
 
   const savedLang = localStorage.getItem('loeLang');
-  let currentLang = savedLang || ((navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en');
+  let currentLang = savedLang || 'en';
 
   function setLanguage(lang){
     currentLang = lang;
