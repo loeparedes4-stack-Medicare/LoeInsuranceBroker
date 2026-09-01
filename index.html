@@ -278,7 +278,138 @@
       .carrier-grid{grid-template-columns:1fr}
       .about-photo img{height:475px}
     }
-  </style>
+  
+
+    /* V5 — photos integrated into each section, no photo gradients */
+    .hero-visual{
+      min-height:0;
+      align-self:stretch;
+      background:#edf7f4;
+      border:1px solid #dcebe7;
+      border-radius:46px;
+      padding:18px;
+      box-shadow:0 26px 70px rgba(18,42,48,.10);
+      display:flex;
+      flex-direction:column;
+      justify-content:stretch;
+    }
+    .hero-photo-wrap{
+      position:relative;
+      inset:auto;
+      width:100%;
+      height:100%;
+      min-height:560px;
+      border-radius:34px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:none;
+      border:1px solid rgba(255,255,255,.9);
+      display:flex;
+      flex-direction:column;
+    }
+    .hero-photo-wrap::before{display:none!important;background:none!important}
+    .hero-photo{
+      width:100%;
+      height:465px;
+      min-height:465px;
+      object-fit:cover;
+      object-position:center 27%;
+      flex:1 1 auto;
+    }
+    .hero-name{
+      position:static;
+      color:var(--text);
+      padding:20px 22px 22px;
+      background:#fff;
+      border-top:1px solid var(--line);
+    }
+    .hero-name strong{font-size:1.75rem;color:var(--ink)}
+    .hero-name span{color:var(--muted);font-size:.72rem}
+    .hero-float{
+      left:-24px;
+      top:44px;
+      width:184px;
+      border:1px solid #dcebe7;
+      box-shadow:0 16px 36px rgba(18,42,48,.10);
+    }
+    .hero-orb{background:#9ce0d6;opacity:.72}
+
+    .carriers{background:#f4faf8}
+    .carrier-shell{align-items:stretch}
+    .carrier-story{
+      min-height:0;
+      border-radius:38px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 22px 55px rgba(18,42,48,.09);
+      border:1px solid #dfeae7;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+    }
+    .carrier-story::after{display:none!important;background:none!important}
+    .carrier-story img{
+      width:100%;
+      height:430px;
+      object-fit:cover;
+      object-position:center 25%;
+      border-radius:27px;
+      border:1px solid #eef2f0;
+    }
+    .carrier-quote{
+      position:static;
+      color:var(--text);
+      padding:22px 12px 10px;
+    }
+    .carrier-quote .quote-mark{
+      width:40px;height:40px;border-radius:13px;
+      background:var(--rose);
+      color:var(--coral-deep);
+      backdrop-filter:none;
+      margin-bottom:12px;
+    }
+    .carrier-quote strong{font-size:1.82rem;color:var(--ink)}
+    .carrier-quote span{color:var(--muted);font-size:.72rem}
+    .carrier-content{
+      box-shadow:0 22px 55px rgba(18,42,48,.06);
+      border-color:#dfeae7;
+    }
+
+    .about-photo{
+      background:#edf7f4;
+      border:1px solid #dcebe7;
+      border-radius:42px;
+      padding:16px;
+    }
+    .about-photo::before{display:none!important;background:none!important}
+    .about-photo img{
+      height:590px;
+      border-radius:30px;
+      box-shadow:none;
+      border:1px solid rgba(255,255,255,.85);
+    }
+
+    @media (max-width:1020px){
+      .hero-visual{max-width:650px;width:100%;margin:0 auto;padding:15px}
+      .hero-photo-wrap{min-height:540px}
+      .hero-photo{height:440px;min-height:440px}
+      .carrier-story{min-height:0}
+    }
+    @media (max-width:740px){
+      .hero-visual{min-height:0;border-radius:32px;padding:10px}
+      .hero-photo-wrap{inset:auto;min-height:470px;border-radius:25px}
+      .hero-photo{height:365px;min-height:365px}
+      .hero-name{padding:16px 16px 18px}
+      .hero-name strong{font-size:1.45rem}
+      .hero-float{left:0;top:-14px;width:156px}
+      .carrier-story{min-height:0;border-radius:30px;padding:10px}
+      .carrier-story img{height:390px;border-radius:22px}
+      .carrier-quote{padding:18px 9px 8px}
+      .carrier-quote strong{font-size:1.55rem}
+      .about-photo{border-radius:30px;padding:10px}
+      .about-photo img{height:500px;border-radius:23px}
+    }
+</style>
 </head>
 <body id="top">
 <header class="header">
