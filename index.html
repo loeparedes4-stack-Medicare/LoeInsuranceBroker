@@ -306,60 +306,86 @@
     .carrier-brand-card{
       position:relative;
       overflow:hidden;
-      min-height:112px;
-      padding:18px 16px;
-      border-radius:20px;
-      border:1px solid rgba(239,208,141,.24);
+      min-height:120px;
+      padding:18px 18px 16px;
+      border-radius:22px;
+      border:1px solid rgba(239,208,141,.22);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.02) 100%),
-        linear-gradient(135deg, rgba(17,53,98,.98) 0%, rgba(8,28,54,.99) 100%);
-      box-shadow:0 16px 30px rgba(4,14,28,.14), inset 0 1px 0 rgba(255,255,255,.05);
+        linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%),
+        linear-gradient(135deg, rgba(18,54,100,.985) 0%, rgba(8,28,54,.995) 100%);
+      box-shadow:
+        0 18px 36px rgba(4,14,28,.16),
+        inset 0 1px 0 rgba(255,255,255,.04),
+        inset 0 -22px 34px rgba(255,255,255,.018);
       display:flex;
       align-items:flex-end;
       justify-content:flex-start;
       isolation:isolate;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .carrier-brand-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(239,208,141,.34);
+      box-shadow:
+        0 22px 42px rgba(4,14,28,.19),
+        inset 0 1px 0 rgba(255,255,255,.05),
+        inset 0 -24px 36px rgba(255,255,255,.02);
     }
     .carrier-brand-card::before{
-      content:attr(data-mark);
+      content:"";
       position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%, -50%);
-      color:rgba(239,208,141,.42);
-      font-family:var(--hero-serif);
-      font-size:clamp(2.7rem, 4.2vw, 3.45rem);
-      line-height:.9;
-      font-weight:600;
-      letter-spacing:-.03em;
-      text-transform:uppercase;
-      text-align:center;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(255,255,255,.10), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 42%);
       z-index:0;
       pointer-events:none;
-      white-space:nowrap;
     }
     .carrier-brand-card::after{
       content:"";
       position:absolute;
-      left:16px;
-      right:16px;
+      left:18px;
+      right:18px;
       top:0;
       height:2px;
       border-radius:0 0 999px 999px;
-      background:linear-gradient(90deg, rgba(239,208,141,.95), rgba(239,208,141,.18));
-      opacity:.92;
+      background:linear-gradient(90deg, rgba(239,208,141,.98), rgba(239,208,141,.22));
+      opacity:.94;
       pointer-events:none;
+      z-index:3;
+    }
+    .carrier-logo-mark{
+      position:absolute;
+      inset:14px 14px 14px 14px;
+      margin:auto;
+      width:72%;
+      height:72%;
+      object-fit:contain;
+      object-position:center;
+      opacity:.17;
+      filter:grayscale(1) brightness(1.7) contrast(1.2);
+      z-index:1;
+      pointer-events:none;
+      user-select:none;
     }
     .carrier-brand-card span{
       position:relative;
-      z-index:1;
+      z-index:4;
       display:block;
-      color:#fbfdff;
-      font-size:.86rem;
+      color:#ffffff;
+      font-size:.88rem;
       font-weight:700;
-      line-height:1.28;
+      line-height:1.24;
       letter-spacing:-.01em;
       max-width:12ch;
+      text-shadow:0 1px 1px rgba(0,0,0,.18);
     }
+    .carrier-brand-card.uhc .carrier-logo-mark{width:76%; height:76%}
+    .carrier-brand-card.humana .carrier-logo-mark{width:66%; height:66%}
+    .carrier-brand-card.alignment .carrier-logo-mark{width:68%; height:68%}
+    .carrier-brand-card.wellcare .carrier-logo-mark{width:66%; height:66%}
+    .carrier-brand-card.aetna .carrier-logo-mark{width:58%; height:58%}
+    .carrier-brand-card.bcbs .carrier-logo-mark{width:62%; height:62%}
 
     .hero-photo{
       position:relative;
@@ -1448,12 +1474,7 @@
         border-radius:18px;
         padding:14px;
       }
-      .carrier-brand-card::before{
-        top:50%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        font-size:2.15rem;
-      }
+      
       .carrier-brand-card span{
         max-width:none;
         font-size:.8rem;
@@ -1471,17 +1492,82 @@
         min-height:100px;
         padding:12px;
       }
-      .carrier-brand-card::before{
-        top:50%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        font-size:1.9rem;
-      }
+      
       .carrier-brand-card span{
         font-size:.75rem;
         line-height:1.22;
       }
     }
+  </style>
+
+
+  <style id="carrier-cards-premium-polish">
+    @media (max-width:700px){
+      .carrier-brand-card{
+        min-height:102px;
+        padding:14px 14px;
+        border-radius:18px;
+      }
+      .carrier-brand-card span{
+        font-size:.8rem;
+        max-width:none;
+      }
+    }
+    @media (max-width:430px){
+      .carrier-brand-card{
+        min-height:96px;
+        padding:12px;
+      }
+      .carrier-brand-card span{
+        font-size:.76rem;
+        line-height:1.22;
+      }
+    }
+  </style>
+
+
+  <style id="real-carrier-logos-mobile-fix">
+    @media (max-width:700px){
+      .carrier-brand-card{
+        min-height:104px;
+        padding:14px 14px 12px;
+        border-radius:18px;
+      }
+      .carrier-logo-mark{
+        width:74%;
+        height:74%;
+        opacity:.18;
+      }
+      .carrier-brand-card span{
+        font-size:.79rem;
+        max-width:none;
+      }
+    }
+    @media (max-width:430px){
+      .carrier-brand-card{
+        min-height:98px;
+        padding:12px 12px 10px;
+      }
+      .carrier-logo-mark{
+        width:76%;
+        height:76%;
+        opacity:.19;
+      }
+      .carrier-brand-card span{
+        font-size:.75rem;
+        line-height:1.18;
+      }
+    }
+  </style>
+
+
+  <style id="carrier-logo-size-rules">
+    .carrier-brand-card.uhc .carrier-logo-mark{width:76%; height:76%}
+    .carrier-brand-card.humana .carrier-logo-mark{width:66%; height:66%}
+    .carrier-brand-card.alignment .carrier-logo-mark{width:68%; height:68%}
+    .carrier-brand-card.wellcare .carrier-logo-mark{width:66%; height:66%}
+    .carrier-brand-card.aetna .carrier-logo-mark{width:58%; height:58%}
+    .carrier-brand-card.bcbs .carrier-logo-mark{width:62%; height:62%}
   </style>
 
 </head>
@@ -1528,12 +1614,30 @@
           <div class="hero-carriers">
             <div class="hero-carriers-label" data-i18n="heroCarriersLabel">Insurance carriers we work with</div>
             <div class="hero-carriers-list" aria-label="Associated insurance carriers">
-              <div class="carrier-brand-card" data-mark="UHC"><span>UnitedHealthcare</span></div>
-              <div class="carrier-brand-card" data-mark="H"><span>Humana</span></div>
-              <div class="carrier-brand-card" data-mark="AH"><span>Alignment Health</span></div>
-              <div class="carrier-brand-card" data-mark="W"><span>Wellcare</span></div>
-              <div class="carrier-brand-card" data-mark="A"><span>Aetna</span></div>
-              <div class="carrier-brand-card" data-mark="BCBS"><span>Blue Cross Blue Shield</span></div>
+              <div class="carrier-brand-card uhc">
+                <img class="carrier-logo-mark" src="https://logo.clearbit.com/unitedhealthcare.com" alt="UnitedHealthcare logo">
+                <span>UnitedHealthcare</span>
+              </div>
+              <div class="carrier-brand-card humana">
+                <img class="carrier-logo-mark" src="https://logo.clearbit.com/humana.com" alt="Humana logo">
+                <span>Humana</span>
+              </div>
+              <div class="carrier-brand-card alignment">
+                <img class="carrier-logo-mark" src="https://logo.clearbit.com/alignmenthealth.com" alt="Alignment Health logo">
+                <span>Alignment Health</span>
+              </div>
+              <div class="carrier-brand-card wellcare">
+                <img class="carrier-logo-mark" src="https://logo.clearbit.com/wellcare.com" alt="Wellcare logo">
+                <span>Wellcare</span>
+              </div>
+              <div class="carrier-brand-card aetna">
+                <img class="carrier-logo-mark" src="https://logo.clearbit.com/aetna.com" alt="Aetna logo">
+                <span>Aetna</span>
+              </div>
+              <div class="carrier-brand-card bcbs">
+                <img class="carrier-logo-mark" src="https://logo.clearbit.com/bcbs.com" alt="Blue Cross Blue Shield logo" onerror="this.onerror=null;this.src='https://logo.clearbit.com/bcbs.com';">
+                <span>Blue Cross Blue Shield</span>
+              </div>
             </div>
           </div>
         </div>
