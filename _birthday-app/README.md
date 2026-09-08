@@ -4,7 +4,7 @@ Aplicación para un negocio y un administrador. Frontend HTML/CSS/JavaScript sin
 
 ## Estado de entrega
 
-Código implementado y validado localmente. Las pruebas incluyen PostgreSQL real embebido (PGlite), RLS, reservas anuales y PNG real mediante resvg WebAssembly. La prueba integrada ejecuta el pipeline de producción con Storage y Meta simulados. **No se ha desplegado ni enviado ningún WhatsApp real:** faltan proyecto Supabase, acceso a Meta, plantilla aprobada y teléfono de prueba autorizado. No considerar verificada la integración real hasta completar la lista de aceptación al final.
+Código implementado y validado localmente. Las pruebas incluyen PostgreSQL real embebido (PGlite), RLS, reservas anuales y PNG real mediante resvg WebAssembly. La prueba integrada ejecuta el pipeline de producción con Storage y Meta simulados. **Supabase y el panel ya están desplegados.** El acceso por PIN, Storage, la generación PNG real y Cron fueron verificados. No se ha enviado ningún WhatsApp real: faltan acceso a Meta, plantilla aprobada y teléfono de prueba autorizado. No considerar verificada la integración real hasta completar la lista de aceptación al final.
 
 ## Archivos
 
@@ -48,7 +48,7 @@ Edita `.env`: en Supabase, **Project Settings → API / API Keys**, copia la URL
 npm run dev
 ```
 
-Abre la dirección que imprime Vite, normalmente `http://127.0.0.1:5173`. Entra con el administrador. En **Configuración**, establece negocio, propietario, zona horaria, país para teléfonos locales y horario. En **Diseño de felicitación**, sube foto y logo PNG/JPG (hasta 2 MB). Guarda los cambios. La automatización comienza pausada.
+Abre la dirección que imprime Vite, normalmente `http://127.0.0.1:5173`. Entra con el PIN configurado en el backend. En **Configuración**, establece negocio, propietario, zona horaria, país para teléfonos locales y horario. En **Diseño de felicitación**, sube foto y logo PNG/JPG (hasta 5 MB). Guarda los cambios. La automatización comienza pausada.
 
 ## 3. WhatsApp Business y plantilla
 
@@ -79,7 +79,7 @@ Referencias oficiales: [colección Cloud API de Meta](https://www.postman.com/me
 
 ## 4. Secretos y Edge Functions
 
-Instala Supabase CLI siguiendo su [guía oficial](https://supabase.com/docs/guides/local-development/cli/getting-started) y Docker Desktop para empaquetar los archivos estáticos WASM. El binario WASM y la fuente Inter, con su licencia OFL, están incluidos en `assets/` y en `static_files`.
+Instala Supabase CLI siguiendo su [guía oficial](https://supabase.com/docs/guides/local-development/cli/getting-started) El binario WASM y la fuente Inter, con su licencia OFL, están incluidos en `assets/` y se empaquetan dentro de `runtime-assets.ts` mediante `node scripts/embed-render-assets.mjs`. Esto permite desplegar con `--use-api` sin depender de Docker.
 
 ```powershell
 Copy-Item .env.backend.example .env.backend
@@ -88,8 +88,8 @@ node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
 supabase login
 supabase link --project-ref TU_PROJECT_REF
 supabase secrets set --env-file .env.backend
-supabase functions deploy birthday-cron
-supabase functions deploy admin-action
+supabase functions deploy birthday-cron --use-api
+supabase functions deploy admin-action --use-api
 ```
 
 `TU_PROJECT_REF` es el subdominio de la URL de Supabase. Edita antes `.env.backend`: token Meta, Phone Number ID, versión Graph habilitada para tu app y `ALLOWED_ORIGIN` igual al origen exacto del panel (sin barra final). El ejemplo usa `v23.0`; verifica su disponibilidad en tu app y actualízala al migrar versiones. Los secretos nunca entran al build Vite.
@@ -171,3 +171,11 @@ Publica el contenido de `dist/` en cualquier hosting estático HTTPS (Supabase s
 4. **Nombre exacto e idioma de la plantilla aprobada:** WhatsApp Manager → Message templates.
 
 Además debes crear tu usuario administrador y proporcionar en el panel la foto del propietario, el logo y un teléfono de prueba autorizado. El WABA ID se usa para identificar la cuenta al configurar Meta, pero no es un secreto ni es necesario en el código de envío. No hace falta proporcionar una Service Role Key al frontend. `CRON_SECRET` se genera localmente.
+
+## Acceso por PIN
+
+El panel publicado utiliza un PIN de cuatro dígitos por petición expresa del propietario. El correo del administrador permanece asociado en Supabase Auth, pero no se solicita al entrar. El PIN no se almacena en el frontend ni en este repositorio. Sus secretos son PANEL_PIN_SALT y PANEL_PIN_HASH (SHA-256 de salt + dos puntos + PIN).
+
+Ejecutar `supabase/pin.sql` y desplegar `pin-login --use-api`. El servidor permite como máximo 5 intentos por 15 minutos y 20 por día, de forma global y atómica, sin depender de la IP. Los accesos correctos también consumen un intento. La sesión de Supabase se conserva para no exigir el PIN en cada visita. Un atacante puede agotar el presupuesto y bloquear temporalmente nuevos accesos; un PIN de cuatro dígitos sigue siendo más débil que una contraseña. Se mantuvieron Auth y RLS.
+
+Verificación remota: PIN incorrecto 401; correcto 200 con sesión; lectura autenticada 200; Storage de marca y renderizado PNG 1080×1080 correctos; Cron 200 con automatización pausada. WhatsApp no está conectado todavía.

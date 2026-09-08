@@ -1,12 +1,17 @@
 import {parsePhoneNumberFromString} from 'npm:libphonenumber-js@1.12.24';
 import {db,check,json,requireAdmin,cors} from '../_shared/runtime.ts';
 import {processMessage} from '../_shared/send.ts';
+import {renderCard} from '../_shared/render.ts';
 Deno.serve(async req=>{
  if(req.method==='OPTIONS')return new Response('ok',{headers:cors});
  if(req.method!=='POST')return json({error:'Method not allowed'},405);
  try{
   await requireAdmin(req);const body=await req.json();const settings=check(await db.from('business_settings').select('*').eq('id',1).single());let message;
-  if(body.action==='retry'){
+  if(body.action==='preview'){
+   const name=String(body.name||'Michael').trim();if(name.length>60)throw new Error('Nombre demasiado largo');
+   const png=await renderCard(settings,name);
+   return new Response(png.buffer as ArrayBuffer,{headers:{...cors,'Content-Type':'image/png','Cache-Control':'no-store'}});
+  }else if(body.action==='retry'){
    const old=check(await db.from('birthday_messages').select('*').eq('id',body.id).single());
    if(old.kind==='birthday'&&!old.client_id)throw new Error('El cliente fue eliminado');
    message=check(await db.from('birthday_messages').update({status:'pending',error_message:null,updated_at:new Date().toISOString()}).eq('id',body.id).eq('status','failed').select().maybeSingle());

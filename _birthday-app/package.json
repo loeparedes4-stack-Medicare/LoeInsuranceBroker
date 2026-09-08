@@ -6,7 +6,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "test": "node --test tests/*.test.js",
-    "check:edge": "deno check supabase/functions/birthday-cron/index.ts supabase/functions/admin-action/index.ts",
+    "check:edge": "deno check supabase/functions/birthday-cron/index.ts supabase/functions/admin-action/index.ts supabase/functions/pin-login/index.ts",
     "test:deno": "deno test --allow-read --allow-env tests/render_test.ts"
   },
   "dependencies": {

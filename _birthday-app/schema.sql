@@ -48,7 +48,7 @@ grant select,delete on public.clients to authenticated;
 grant insert(name,phone,birthday,active,whatsapp_consent,consent_note) on public.clients to authenticated;
 grant update(name,phone,birthday,active,whatsapp_consent,consent_note) on public.clients to authenticated;
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types) values
- ('brand','brand',false,2097152,array['image/png','image/jpeg']),('birthday-cards','birthday-cards',false,5242880,array['image/png']);
+ ('brand','brand',false,5242880,array['image/png','image/jpeg']),('birthday-cards','birthday-cards',false,5242880,array['image/png']);
 create policy brand_admin on storage.objects for all to authenticated using(bucket_id='brand' and public.is_admin()) with check(bucket_id='brand' and public.is_admin());
 create policy cards_read on storage.objects for select to authenticated using(bucket_id='birthday-cards' and public.is_admin());
 -- Atomic booking: concurrent cron calls cannot claim the same phone/year.
