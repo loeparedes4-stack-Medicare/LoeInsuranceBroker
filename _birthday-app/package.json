@@ -1,0 +1,23 @@
+{
+  "name": "birthday-whatsapp",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "test": "node --test tests/*.test.js",
+    "check:edge": "deno check supabase/functions/birthday-cron/index.ts supabase/functions/admin-action/index.ts",
+    "test:deno": "deno test --allow-read --allow-env tests/render_test.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.57.4",
+    "libphonenumber-js": "1.12.24",
+    "papaparse": "5.5.3"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.3.14",
+    "@resvg/resvg-wasm": "2.6.2",
+    "deno": "2.5.2",
+    "vite": "7.3.6"
+  }
+}

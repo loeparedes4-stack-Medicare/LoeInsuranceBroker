@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {phoneE164,validBirthday,localDate,daysUntil} from '../src/domain.js';
+import {cardSvg} from '../supabase/functions/_shared/card.js';
+import {initWasm,Resvg} from '@resvg/resvg-wasm';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+test('E.164 normalization and invalid numbers',()=>{assert.equal(phoneE164('(202) 555-0123','US'),'+12025550123');assert.equal(phoneE164('+34 612 345 678','ES'),'+34612345678');assert.throws(()=>phoneE164('123'));});
+test('calendar validation, timezone boundary, leap years',()=>{assert.equal(validBirthday('2000-02-29'),'2000-02-29');assert.throws(()=>validBirthday('2001-02-29'));assert.throws(()=>validBirthday('2099-01-01'));assert.equal(localDate(new Date('2026-09-07T03:00:00Z'),'America/Phoenix'),'2026-09-06');assert.equal(daysUntil('2000-01-01','2026-12-31'),1);assert.equal(daysUntil('2000-02-29','2027-02-28'),366);});
+test('SVG escapes customer and business data',()=>{const svg=cardSvg({business_name:'A&B',owner_name:'<script>',greeting_text:'Happy Birthday, {{name}}!'},'<img onerror=x>');assert.ok(!svg.includes('<script>'));assert.ok(!svg.includes('<img'));assert.ok(svg.includes('A&amp;B'));});
+test('real WASM backend renderer produces a personalized 1080 PNG',async()=>{await initWasm(await readFile('supabase/functions/_shared/assets/index_bg.wasm'));const font=await readFile('supabase/functions/_shared/assets/Inter.ttf');const renderer=new Resvg(cardSvg({business_name:'North & Co.',owner_name:'Alex Morgan',greeting_text:'Happy Birthday, {{name}}!'},'Michael'),{font:{fontBuffers:[font],loadSystemFonts:false,defaultFontFamily:'Inter'}});const image=renderer.render();const png=image.asPng();assert.equal(image.width,1080);assert.equal(image.height,1080);assert.deepEqual([...png.slice(0,8)],[137,80,78,71,13,10,26,10]);await mkdir('tests/output',{recursive:true});await writeFile('tests/output/card-preview.png',png);renderer.free();});

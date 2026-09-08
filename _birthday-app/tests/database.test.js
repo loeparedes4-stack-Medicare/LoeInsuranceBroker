@@ -1,0 +1,27 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {PGlite} from '@electric-sql/pglite';
+import {readFile} from 'node:fs/promises';
+test('PostgreSQL schema, annual reservations, consent, RLS and atomic completion',async()=>{
+ const db=new PGlite();
+ await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;
+ create schema auth; create table auth.users(id uuid primary key);
+ create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
+ create schema storage; create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);create table storage.objects(id uuid,bucket_id text);alter table storage.objects enable row level security;
+ grant usage on schema public,auth,storage to anon,authenticated,service_role;grant execute on function auth.uid() to authenticated;`);
+ await db.exec(await readFile('schema.sql','utf8'));
+ const admin='00000000-0000-4000-8000-000000000001';await db.query('insert into auth.users values($1)',[admin]);await db.query('insert into admin_user(user_id) values($1)',[admin]);
+ await db.exec(`update business_settings set automation_enabled=true,send_time='00:00',timezone='UTC';
+ insert into clients(name,phone,birthday,whatsapp_consent) values('Authorized','+12025550123',current_date,true),('No consent','+12025550124',current_date,false);
+ insert into clients(name,phone,birthday,whatsapp_consent,active) values('Inactive','+12025550125',current_date,true,false);`);
+ const first=await db.query('select * from claim_birthdays(5)');assert.equal(first.rows.length,1);assert.equal(first.rows[0].client_name,'Authorized');
+ assert.equal((await db.query('select * from claim_birthdays(5)')).rows.length,0);
+ const m=first.rows[0];await db.query("update birthday_messages set status='sending' where id=$1",[m.id]);await db.query('select finish_message($1,$2)',[m.id,'wamid.accepted']);
+ assert.equal((await db.query('select status from birthday_messages')).rows[0].status,'sent');assert.equal((await db.query('select last_birthday_sent_year from clients where id=$1',[m.client_id])).rows[0].last_birthday_sent_year,new Date().getUTCFullYear());
+ await assert.rejects(db.query('select finish_message($1,$2)',[m.id,'duplicate']));
+ await db.query('delete from clients where id=$1',[m.client_id]);await db.exec("insert into clients(name,phone,birthday,whatsapp_consent) values('Recreated','+12025550123',current_date,true)");assert.equal((await db.query('select * from claim_birthdays(5)')).rows.length,0);
+ await db.exec('set role authenticated');await db.query("select set_config('request.jwt.claim.sub',$1,false)",[admin]);assert.equal((await db.query('select * from clients')).rows.length,3);
+ await assert.rejects(db.exec("update clients set last_birthday_sent_year=2001"));await assert.rejects(db.exec("update birthday_messages set status='pending'"));await assert.rejects(db.exec('select * from claim_birthdays(5)'));
+ await db.query("select set_config('request.jwt.claim.sub',$1,false)",['00000000-0000-4000-8000-000000000002']);assert.equal((await db.query('select * from clients')).rows.length,0);await assert.rejects(db.exec("insert into clients(name,phone,birthday) values('Intruder','+12025550126',current_date)"));
+ await db.exec('reset role');await db.close();
+});
