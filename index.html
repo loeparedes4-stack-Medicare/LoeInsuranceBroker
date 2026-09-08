@@ -9,7 +9,7 @@
   <link rel="icon" href="logo-lib.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -29,8 +29,8 @@
       --shadow:0 24px 68px rgba(8,31,61,.12);
       --container:1140px;
       --serif:"Cormorant Garamond", Georgia, serif;
-      --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-      --hero-serif:"Bodoni Moda", Georgia, serif;
+      --sans:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --hero-serif:"Cormorant Garamond", Georgia, serif;
     }
 
     *{box-sizing:border-box}
@@ -119,8 +119,10 @@
       margin:18px 0 0;
       max-width:62ch;
       color:var(--muted);
-      font-size:.98rem;
-      line-height:1.82;
+      font-size:.95rem;
+      line-height:1.78;
+      font-weight:500;
+      letter-spacing:-.003em;
     }
 
     .btn{
@@ -255,23 +257,25 @@
     .hero-copy .eyebrow{color:var(--gold-light)}
     .hero-copy .eyebrow::before{background:linear-gradient(90deg,var(--gold-light), rgba(239,208,141,.2))}
     .hero-copy h1{
-      margin:8px 0 20px;
-      max-width:760px;
+      margin:10px 0 20px;
+      max-width:11ch;
       color:#fff;
       font-family:var(--hero-serif);
-      font-size:clamp(4.05rem, 6.3vw, 6.15rem);
-      line-height:.9;
-      letter-spacing:-.038em;
+      font-size:clamp(3.65rem, 5.6vw, 5.45rem);
+      line-height:.96;
+      letter-spacing:-.022em;
       font-weight:600;
       text-wrap:balance;
     }
     .hero-copy h1 span{color:var(--gold-light)}
     .hero-copy .lead{
       margin:0;
-      max-width:57ch;
-      color:#d8e0e9;
-      font-size:.99rem;
-      line-height:1.84;
+      max-width:56ch;
+      color:#dfe7ef;
+      font-size:.97rem;
+      line-height:1.78;
+      font-weight:500;
+      letter-spacing:-.005em;
     }
     .hero-copy .lead strong{color:#fff}
     .hero-cta{
@@ -284,11 +288,11 @@
       margin-top:30px;
       padding-top:22px;
       border-top:1px solid rgba(255,255,255,.10);
-      max-width:900px;
+      max-width:920px;
     }
     .hero-carriers-label{
-      margin-bottom:12px;
-      color:#d9dfdf;
+      margin-bottom:14px;
+      color:#e4e8ee;
       font-size:.66rem;
       font-weight:700;
       letter-spacing:.16em;
@@ -297,52 +301,63 @@
     .hero-carriers-list{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:12px;
+      gap:14px;
     }
     .hero-carriers-list span{
       position:relative;
       overflow:hidden;
-      min-height:72px;
-      padding:14px 16px;
-      border-radius:20px;
-      border:1px solid rgba(239,208,141,.32);
+      min-height:78px;
+      padding:16px 18px;
+      border-radius:18px;
+      border:1px solid rgba(239,208,141,.24);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.03) 100%),
-        linear-gradient(135deg, rgba(18,56,103,.98) 0%, rgba(8,31,61,.99) 100%);
-      color:#ffffff;
-      font-size:.82rem;
+        radial-gradient(circle at 18% 18%, rgba(239,208,141,.16), transparent 34%),
+        linear-gradient(180deg, rgba(24,62,112,.98) 0%, rgba(10,30,58,.99) 100%);
+      color:#fbfdff;
+      font-size:.84rem;
       font-weight:700;
-      line-height:1.28;
+      line-height:1.3;
       text-align:center;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 14px 28px rgba(4,14,28,.16), inset 0 1px 0 rgba(255,255,255,.05);
+      box-shadow:0 16px 30px rgba(4,14,28,.14), inset 0 1px 0 rgba(255,255,255,.05), inset 0 -20px 28px rgba(255,255,255,.025);
       backdrop-filter:blur(6px);
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .hero-carriers-list span:hover{
+      transform:translateY(-2px);
+      box-shadow:0 20px 34px rgba(4,14,28,.18), inset 0 1px 0 rgba(255,255,255,.06);
+      border-color:rgba(239,208,141,.34);
     }
     .hero-carriers-list span::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(135deg, rgba(239,208,141,.18) 0%, rgba(239,208,141,.03) 36%, transparent 60%);
+      background:linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 38%);
       pointer-events:none;
     }
     .hero-carriers-list span::after{
       content:"";
       position:absolute;
-      left:16px;
-      right:16px;
+      left:18px;
+      right:18px;
       top:0;
       height:2px;
       border-radius:0 0 999px 999px;
-      background:linear-gradient(90deg, rgba(239,208,141,.96), rgba(239,208,141,.18));
+      background:linear-gradient(90deg, rgba(239,208,141,.95), rgba(239,208,141,.24));
       opacity:.95;
       pointer-events:none;
     }
-    .hero-carriers-list span:nth-child(2n){
+    .hero-carriers-list span:nth-child(3n+2){
       background:
-        linear-gradient(180deg, rgba(239,208,141,.08) 0%, rgba(255,255,255,.02) 100%),
-        linear-gradient(135deg, rgba(14,47,92,.98) 0%, rgba(10,37,72,.99) 100%);
+        radial-gradient(circle at 20% 18%, rgba(239,208,141,.18), transparent 34%),
+        linear-gradient(180deg, rgba(21,57,104,.98) 0%, rgba(8,28,54,.99) 100%);
+    }
+    .hero-carriers-list span:nth-child(3n+3){
+      background:
+        radial-gradient(circle at 22% 18%, rgba(239,208,141,.14), transparent 34%),
+        linear-gradient(180deg, rgba(18,52,96,.98) 0%, rgba(7,25,48,.99) 100%);
     }
 
     .hero-photo{
@@ -835,12 +850,12 @@
       .brand-copy small{font-size:.43rem}
       .hero{padding:28px 0 52px}
       .hero-shell{gap:28px; min-height:auto}
-      .hero-copy h1{font-size:clamp(3.45rem,15vw,4.85rem)}
+      .hero-copy h1{font-size:clamp(3rem,13.6vw,4.3rem); line-height:.98}
       .hero-copy .lead{font-size:.92rem}
       .hero-cta{display:grid; grid-template-columns:1fr 1fr}
       .hero-cta .btn:first-child{grid-column:1/-1}
       .hero-photo{height:440px}
-      .hero-carriers-list{grid-template-columns:1fr}
+      .hero-carriers-list{grid-template-columns:1fr; gap:10px}
       .medicare-story-media{height:340px}
       .medicare-story-copy{padding:24px 22px 26px}
       .medicare-story-copy h3{font-size:2.55rem}
