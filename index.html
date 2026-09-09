@@ -362,11 +362,35 @@
       height:72%;
       object-fit:contain;
       object-position:center;
-      opacity:.17;
-      filter:grayscale(1) brightness(1.7) contrast(1.2);
+      opacity:.22;
+      filter:grayscale(1) brightness(2.15) contrast(1.22);
       z-index:1;
       pointer-events:none;
       user-select:none;
+    }
+    .carrier-brand-card.uhc .carrier-logo-mark{
+      opacity:.20;
+      filter:grayscale(1) brightness(2.5) contrast(1.2);
+    }
+    .carrier-brand-card.humana .carrier-logo-mark{
+      opacity:.26;
+      filter:brightness(0) saturate(100%) invert(84%) sepia(36%) saturate(649%) hue-rotate(355deg) brightness(101%) contrast(90%);
+    }
+    .carrier-brand-card.alignment .carrier-logo-mark{
+      opacity:.24;
+      filter:grayscale(1) brightness(2.7) contrast(1.18);
+    }
+    .carrier-brand-card.wellcare .carrier-logo-mark{
+      opacity:.28;
+      filter:brightness(0) saturate(100%) invert(88%) sepia(24%) saturate(718%) hue-rotate(354deg) brightness(100%) contrast(94%);
+    }
+    .carrier-brand-card.aetna .carrier-logo-mark{
+      opacity:.27;
+      filter:brightness(0) saturate(100%) invert(83%) sepia(33%) saturate(742%) hue-rotate(357deg) brightness(101%) contrast(92%);
+    }
+    .carrier-brand-card.bcbs .carrier-logo-mark{
+      opacity:.24;
+      filter:grayscale(1) brightness(2.75) contrast(1.15);
     }
     .carrier-brand-card span{
       position:relative;
@@ -1570,6 +1594,30 @@
     .carrier-brand-card.bcbs .carrier-logo-mark{width:62%; height:62%}
   </style>
 
+
+  <style id="carrier-logo-contrast-fix">
+    @media (max-width:700px){
+      .carrier-logo-mark{
+        opacity:.24;
+      }
+      .carrier-brand-card.humana .carrier-logo-mark,
+      .carrier-brand-card.wellcare .carrier-logo-mark,
+      .carrier-brand-card.aetna .carrier-logo-mark{
+        opacity:.30;
+      }
+    }
+    @media (max-width:430px){
+      .carrier-logo-mark{
+        opacity:.25;
+      }
+      .carrier-brand-card.humana .carrier-logo-mark,
+      .carrier-brand-card.wellcare .carrier-logo-mark,
+      .carrier-brand-card.aetna .carrier-logo-mark{
+        opacity:.32;
+      }
+    }
+  </style>
+
 </head>
 
 <body id="top">
@@ -1607,8 +1655,8 @@
 
           <div class="hero-cta">
             <button class="btn btn-gold js-scroll-book" type="button" data-i18n="heroBook">Book a free consultation</button>
-            <a class="btn btn-ghost" href="tel:+14805049855" data-i18n="callLucy">Call Lucy</a>
-            <a class="btn btn-ghost" href="https://wa.me/114805049855" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
+            <a class="btn btn-ghost" href="tel:+14846652494" data-i18n="callLucy">Call Lucy</a>
+            <a class="btn btn-ghost" href="https://wa.me/14846652494" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
           </div>
 
           <div class="hero-carriers">
