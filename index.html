@@ -307,7 +307,7 @@
       position:relative;
       overflow:hidden;
       min-height:120px;
-      padding:18px 18px 16px;
+      padding:18px;
       border-radius:22px;
       border:1px solid rgba(239,208,141,.22);
       background:
@@ -318,8 +318,8 @@
         inset 0 1px 0 rgba(255,255,255,.04),
         inset 0 -22px 34px rgba(255,255,255,.018);
       display:flex;
-      align-items:flex-end;
-      justify-content:flex-start;
+      align-items:center;
+      justify-content:center;
       isolation:isolate;
       transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
@@ -355,54 +355,25 @@
       z-index:3;
     }
     .carrier-logo-mark{
-      position:absolute;
-      inset:14px 14px 14px 14px;
-      margin:auto;
-      width:72%;
-      height:72%;
+      position:relative;
+      width:68%;
+      height:68%;
       object-fit:contain;
       object-position:center;
-      opacity:.22;
-      filter:grayscale(1) brightness(2.15) contrast(1.22);
-      z-index:1;
+      opacity:.94;
+      filter:none;
+      z-index:2;
       pointer-events:none;
       user-select:none;
     }
-    .carrier-brand-card.uhc .carrier-logo-mark{
-      opacity:.20;
-      filter:grayscale(1) brightness(2.5) contrast(1.2);
-    }
-    .carrier-brand-card.humana .carrier-logo-mark{
-      opacity:.26;
-      filter:brightness(0) saturate(100%) invert(84%) sepia(36%) saturate(649%) hue-rotate(355deg) brightness(101%) contrast(90%);
-    }
-    .carrier-brand-card.alignment .carrier-logo-mark{
-      opacity:.24;
-      filter:grayscale(1) brightness(2.7) contrast(1.18);
-    }
-    .carrier-brand-card.wellcare .carrier-logo-mark{
-      opacity:.28;
-      filter:brightness(0) saturate(100%) invert(88%) sepia(24%) saturate(718%) hue-rotate(354deg) brightness(100%) contrast(94%);
-    }
-    .carrier-brand-card.aetna .carrier-logo-mark{
-      opacity:.27;
-      filter:brightness(0) saturate(100%) invert(83%) sepia(33%) saturate(742%) hue-rotate(357deg) brightness(101%) contrast(92%);
-    }
-    .carrier-brand-card.bcbs .carrier-logo-mark{
-      opacity:.24;
-      filter:grayscale(1) brightness(2.75) contrast(1.15);
-    }
+    .carrier-brand-card.uhc .carrier-logo-mark{width:74%; height:74%; opacity:.94;}
+    .carrier-brand-card.humana .carrier-logo-mark{width:62%; height:62%; opacity:.94;}
+    .carrier-brand-card.alignment .carrier-logo-mark{width:66%; height:66%; opacity:.94;}
+    .carrier-brand-card.wellcare .carrier-logo-mark{width:62%; height:62%; opacity:.94;}
+    .carrier-brand-card.aetna .carrier-logo-mark{width:56%; height:56%; opacity:.96;}
+    .carrier-brand-card.bcbs .carrier-logo-mark{width:60%; height:60%; opacity:.94;}
     .carrier-brand-card span{
-      position:relative;
-      z-index:4;
-      display:block;
-      color:#ffffff;
-      font-size:.88rem;
-      font-weight:700;
-      line-height:1.24;
-      letter-spacing:-.01em;
-      max-width:12ch;
-      text-shadow:0 1px 1px rgba(0,0,0,.18);
+      display:none;
     }
     .carrier-brand-card.uhc .carrier-logo-mark{width:76%; height:76%}
     .carrier-brand-card.humana .carrier-logo-mark{width:66%; height:66%}
@@ -1597,24 +1568,28 @@
 
   <style id="carrier-logo-contrast-fix">
     @media (max-width:700px){
+      .carrier-brand-card{
+        min-height:102px;
+        padding:14px;
+      }
       .carrier-logo-mark{
-        opacity:.24;
+        width:70%;
+        height:70%;
+        opacity:.95;
       }
-      .carrier-brand-card.humana .carrier-logo-mark,
-      .carrier-brand-card.wellcare .carrier-logo-mark,
-      .carrier-brand-card.aetna .carrier-logo-mark{
-        opacity:.30;
-      }
+      .carrier-brand-card.aetna .carrier-logo-mark{width:58%; height:58%;}
     }
     @media (max-width:430px){
+      .carrier-brand-card{
+        min-height:96px;
+        padding:12px;
+      }
       .carrier-logo-mark{
-        opacity:.25;
+        width:72%;
+        height:72%;
+        opacity:.96;
       }
-      .carrier-brand-card.humana .carrier-logo-mark,
-      .carrier-brand-card.wellcare .carrier-logo-mark,
-      .carrier-brand-card.aetna .carrier-logo-mark{
-        opacity:.32;
-      }
+      .carrier-brand-card.aetna .carrier-logo-mark{width:60%; height:60%;}
     }
   </style>
 
@@ -1655,8 +1630,8 @@
 
           <div class="hero-cta">
             <button class="btn btn-gold js-scroll-book" type="button" data-i18n="heroBook">Book a free consultation</button>
-            <a class="btn btn-ghost" href="tel:+14805049855" data-i18n="callLucy">Call Lucy</a>
-            <a class="btn btn-ghost" href="https://wa.me/14805049855" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
+            <a class="btn btn-ghost" href="tel:+14846652494" data-i18n="callLucy">Call Lucy</a>
+            <a class="btn btn-ghost" href="https://wa.me/14846652494" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
           </div>
 
           <div class="hero-carriers">
@@ -1664,27 +1639,21 @@
             <div class="hero-carriers-list" aria-label="Associated insurance carriers">
               <div class="carrier-brand-card uhc">
                 <img class="carrier-logo-mark" src="assets/logos/unitedhealthcare.png" alt="UnitedHealthcare logo">
-                <span>UnitedHealthcare</span>
               </div>
               <div class="carrier-brand-card humana">
                 <img class="carrier-logo-mark" src="assets/logos/humana.png" alt="Humana logo">
-                <span>Humana</span>
               </div>
               <div class="carrier-brand-card alignment">
                 <img class="carrier-logo-mark" src="assets/logos/alignment-health.png" alt="Alignment Health logo">
-                <span>Alignment Health</span>
               </div>
               <div class="carrier-brand-card wellcare">
                 <img class="carrier-logo-mark" src="assets/logos/wellcare.png" alt="Wellcare logo">
-                <span>Wellcare</span>
               </div>
               <div class="carrier-brand-card aetna">
                 <img class="carrier-logo-mark" src="assets/logos/aetna.png" alt="Aetna logo">
-                <span>Aetna</span>
               </div>
               <div class="carrier-brand-card bcbs">
                 <img class="carrier-logo-mark" src="assets/logos/bcbs.png" alt="Blue Cross Blue Shield logo" onerror="this.onerror=null;this.src='assets/logos/bcbs.png';">
-                <span>Blue Cross Blue Shield</span>
               </div>
             </div>
           </div>
