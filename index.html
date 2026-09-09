@@ -1593,6 +1593,79 @@
     }
   </style>
 
+
+  <style id="carrier-first-last-white-labels">
+    .carrier-brand-card.logo-with-label{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 18px 14px;
+      text-align:center;
+    }
+
+    .carrier-brand-card.logo-with-label .carrier-logo-mark{
+      position:relative;
+      width:52%;
+      height:52%;
+      max-height:46px;
+      opacity:1;
+      filter:brightness(0) invert(1);
+      margin:0;
+    }
+
+    .carrier-brand-card.uhc.logo-with-label .carrier-logo-mark{
+      width:42%;
+      height:42%;
+      max-height:52px;
+    }
+
+    .carrier-brand-card.bcbs.logo-with-label .carrier-logo-mark{
+      width:48%;
+      height:48%;
+      max-height:46px;
+    }
+
+    .carrier-brand-card.logo-with-label span{
+      display:block !important;
+      position:relative;
+      z-index:4;
+      color:#ffffff;
+      font-size:.84rem;
+      line-height:1.22;
+      font-weight:700;
+      letter-spacing:-.01em;
+      text-align:center;
+      max-width:14ch;
+      margin:0 auto;
+      text-shadow:none;
+    }
+
+    @media (max-width:700px){
+      .carrier-brand-card.logo-with-label{
+        gap:8px;
+        padding:14px 12px 12px;
+      }
+      .carrier-brand-card.logo-with-label .carrier-logo-mark{
+        max-height:40px;
+      }
+      .carrier-brand-card.logo-with-label span{
+        font-size:.76rem;
+        max-width:12ch;
+      }
+    }
+
+    @media (max-width:430px){
+      .carrier-brand-card.logo-with-label .carrier-logo-mark{
+        max-height:36px;
+      }
+      .carrier-brand-card.logo-with-label span{
+        font-size:.72rem;
+      }
+    }
+  </style>
+
 </head>
 
 <body id="top">
@@ -1630,15 +1703,16 @@
 
           <div class="hero-cta">
             <button class="btn btn-gold js-scroll-book" type="button" data-i18n="heroBook">Book a free consultation</button>
-            <a class="btn btn-ghost" href="tel:+14846652494" data-i18n="callLucy">Call Lucy</a>
-            <a class="btn btn-ghost" href="https://wa.me/14846652494" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
+            <a class="btn btn-ghost" href="tel:+14805049855" data-i18n="callLucy">Call Lucy</a>
+            <a class="btn btn-ghost" href="https://wa.me/14805049855" target="_blank" rel="noopener" data-i18n="whatsapp">WhatsApp</a>
           </div>
 
           <div class="hero-carriers">
             <div class="hero-carriers-label" data-i18n="heroCarriersLabel">Insurance carriers we work with</div>
             <div class="hero-carriers-list" aria-label="Associated insurance carriers">
-              <div class="carrier-brand-card uhc">
+              <div class="carrier-brand-card uhc logo-with-label">
                 <img class="carrier-logo-mark" src="assets/logos/unitedhealthcare.png" alt="UnitedHealthcare logo">
+                <span>UnitedHealthcare</span>
               </div>
               <div class="carrier-brand-card humana">
                 <img class="carrier-logo-mark" src="assets/logos/humana.png" alt="Humana logo">
