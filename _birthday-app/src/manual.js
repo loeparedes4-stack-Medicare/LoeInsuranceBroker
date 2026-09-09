@@ -1,3 +1,4 @@
+import {inLib,shareAndroidCard} from './android-bridge.js';
 import {phoneE164} from './domain.js';
 
 export function personalMessage(template, name) {
@@ -27,8 +28,8 @@ export function bindManualDialog(d, {client, settings, preview}) {
       const img=document.createElement('img');img.src=imageUrl;img.alt=`Tarjeta de cumpleaños para ${name}`;img.className='card-preview';result.append(img);
       const label=document.createElement('label');label.textContent='Mensaje para WhatsApp';
       const text=document.createElement('textarea');text.value=personalMessage(settings.whatsapp_message,name);label.append(text);result.append(label);
-      const download=document.createElement('a');download.href=imageUrl;download.download=file.name;download.textContent='1. Descargar tarjeta';download.className='button-link';result.append(download);
-      const help=document.createElement('p');help.className='help';help.textContent='2. Abre el chat, adjunta la tarjeta descargada y pulsa Enviar en WhatsApp Business. El enlace prepara el texto; no adjunta la imagen automáticamente. Usa WhatsApp Business con el número +1 480 504 9855.';result.append(help);
+      const download=document.createElement('a');download.href=imageUrl;download.download=file.name;download.textContent='1. Descargar tarjeta';download.className='button-link';if(!inLib())result.append(download);
+      const help=document.createElement('p');help.className='help';help.textContent='2. Abre el chat, adjunta la tarjeta descargada y pulsa Enviar en WhatsApp Business. El enlace prepara el texto; no adjunta la imagen automáticamente. Usa WhatsApp Business con el número +1 480 504 9855.';if(inLib())help.textContent='Comparte la tarjeta y el mensaje con WhatsApp Business. Selecciona el cliente indicado arriba y pulsa Enviar. También puedes abrir su chat con el texto preparado.';result.append(help);
       const consent=document.createElement('label');consent.className='check';
       const box=document.createElement('input');box.type='checkbox';consent.append(box,document.createTextNode('Tengo autorización para felicitar a esta persona por WhatsApp.'));result.append(consent);
       const actions=document.createElement('div');actions.className='actions';
@@ -38,9 +39,9 @@ export function bindManualDialog(d, {client, settings, preview}) {
         const update=()=>{if(box.checked){open.href=chatUrl(client.phone,text.value,settings.default_country);open.removeAttribute('aria-disabled');}else{open.removeAttribute('href');open.setAttribute('aria-disabled','true');}};
         box.addEventListener('change',update);text.addEventListener('input',update);actions.append(open);
       }
-      if(navigator.canShare?.({files:[file]})){
+      if(inLib()||navigator.canShare?.({files:[file]})){
         const share=document.createElement('button');share.type='button';share.textContent='Compartir tarjeta y mensaje';share.disabled=true;box.addEventListener('change',()=>share.disabled=!box.checked);
-        share.onclick=async()=>{try{await navigator.share({files:[file],text:text.value});status.textContent='Comprueba el destinatario y completa el envío en WhatsApp Business.';}catch(e){if(e.name!=='AbortError')status.textContent='Descarga la tarjeta y adjúntala desde WhatsApp Business.';}};actions.append(share);
+        share.onclick=async()=>{try{if(inLib())await shareAndroidCard(blob,text.value);else await navigator.share({files:[file],text:text.value});status.textContent='Comprueba el destinatario y completa el envío en WhatsApp Business.';}catch(e){if(e.name!=='AbortError')status.textContent='Descarga la tarjeta y adjúntala desde WhatsApp Business.';}};actions.append(share);
       }
       result.append(actions);status.textContent='Tarjeta lista. Todavía no se ha enviado ningún mensaje.';
     }catch(e){if(d.open)status.textContent=e.message||'No se pudo generar la tarjeta.';}
