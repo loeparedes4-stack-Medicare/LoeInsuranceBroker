@@ -551,6 +551,17 @@ dialog::backdrop {
   background: #102c3299;
 }
 
+dialog.lib-native-dialog[open] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  max-height: none !important;
+  margin: 0 !important;
+}
+
 dialog form {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
