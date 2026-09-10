@@ -1,6 +1,6 @@
 import {syncAndroidBirthdays,clearAndroidBirthdays} from './android-bridge.js';
 import {createBirthdayAlerts} from './birthday-alerts.js';
-import {bindManualDialog} from './manual.js';
+import {bindManualDialog,chatUrl} from './manual.js';
 import {createClient} from '@supabase/supabase-js';
 import Papa from 'papaparse';
 import {phoneE164,validBirthday,localDate,daysUntil} from './domain.js';
@@ -22,11 +22,202 @@ function status(m){return `<span class="badge ${m.status}">${labels[m.status]||e
 async function allRows(table){let rows=[],start=0;while(true){const chunk=check(await db.from(table).select('*').order(table==='clients'?'name':'created_at',{ascending:table==='clients'}).range(start,start+999));rows.push(...chunk);if(chunk.length<1000)return rows;start+=1000;}}
 async function load(){[clients,messages,settings]=await Promise.all([allRows('clients'),allRows('birthday_messages'),db.from('business_settings').select('*').eq('id',1).single().then(check)]);for(const [path,target] of [[settings.photo_path,'photo'],[settings.logo_path,'logo']]){let value='';if(path)value=check(await db.storage.from('brand').createSignedUrl(path,3600)).signedUrl;if(target==='photo')photo=value;else logo=value;}syncAndroidBirthdays(clients,settings);}
 function today(){return localDate(new Date(),settings.timezone||'America/Phoenix');}
-function person(c,upcoming=false){const days=daysUntil(c.birthday,today());return `<div class="person"><span class="avatar">${esc(c.name.slice(0,1))}</span><div class="details"><strong>${esc(c.name)}</strong><small>${esc(c.phone)}</small></div><span class="badge">${upcoming?(days===1?'Mañana':`En ${days} días`):(c.whatsapp_consent?'Autorizado':'Sin consentimiento')}</span><button data-prepare="${c.id}">Preparar</button></div>`;}
+function person(c, upcoming = false) {
+  const days = daysUntil(c.birthday, today());
+
+  const whatsappUrl = chatUrl(
+    c.phone,
+    '',
+    settings.default_country
+  );
+
+  return `
+    <div class="person birthday-person">
+      <span class="avatar">
+        ${esc(c.name.slice(0, 1))}
+      </span>
+
+      <div class="details">
+        <strong>${esc(c.name)}</strong>
+        <small>${esc(c.phone)}</small>
+
+        <span class="badge">
+          ${
+            upcoming
+              ? (days === 1 ? 'Mañana' : `En ${days} días`)
+              : (c.whatsapp_consent ? 'Autorizado' : 'Sin consentimiento')
+          }
+        </span>
+      </div>
+
+      <div class="person-actions">
+        <a
+          class="button-link whatsapp-button"
+          href="${esc(whatsappUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp
+        </a>
+
+        <button
+          data-prepare="${c.id}"
+          class="primary"
+        >
+          Preparar
+        </button>
+      </div>
+    </div>
+  `;
+}
 function historyTable(rows){return rows.length?`<div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Fecha</th><th>Estado</th><th>Detalle</th><th></th></tr></thead><tbody>${rows.map(m=>`<tr><td><strong>${esc(m.client_name)}</strong><br><small>${esc(m.phone)}${m.kind==='test'?' · Prueba':''}</small></td><td>${new Date(m.created_at).toLocaleString('es',{timeZone:settings.timezone})}</td><td>${status(m)}</td><td>${esc(m.error_message||m.whatsapp_message_id||'—')}</td><td>${m.image_path?`<button data-image="${m.id}">Ver tarjeta</button>`:''}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Todavía no hay envíos registrados.</div>';}
 function dashboard(){const date=today(),birthdays=clients.filter(c=>c.birthday.slice(5)===date.slice(5)),upcoming=clients.filter(c=>daysUntil(c.birthday,date)>0).sort((a,b)=>daysUntil(a.birthday,date)-daysUntil(b.birthday,date)).slice(0,5),sent=messages.filter(m=>m.kind==='birthday'&&m.status==='sent'&&localDate(new Date(m.sent_at),settings.timezone).slice(0,7)===date.slice(0,7));return `<div class="alert">Envío manual: prepara la tarjeta y completa el envío desde WhatsApp Business. Abrir un chat no confirma que se haya enviado.</div><div class="stats"><div class="stat">Cumpleaños de hoy<strong>${birthdays.length}</strong><small>${new Date(date+'T12:00:00').toLocaleDateString('es',{day:'numeric',month:'long'})}</small></div><div class="stat">Total de clientes<strong>${clients.length}</strong><small>${clients.filter(c=>c.active&&c.whatsapp_consent).length} activos y autorizados</small></div><div class="stat">Enviados este mes<strong>${sent.length}</strong><small>Aceptados por Meta</small></div><div class="stat">Mensajes fallidos<strong>${messages.filter(m=>m.status==='failed').length}</strong><small>${messages.filter(m=>m.status==='unknown').length} por revisar</small></div></div><div class="split"><section class="panel"><h2>Hoy celebramos</h2>${birthdays.map(c=>person(c)).join('')||'<div class="empty">Hoy no hay cumpleaños.<br>Las próximas celebraciones aparecerán aquí.</div>'}</section><section class="panel"><h2>Próximos cumpleaños</h2>${upcoming.map(c=>person(c,true)).join('')||'<div class="empty">Añade tu primer cliente para empezar.</div>'}</section></div><section class="panel"><div class="row"><h2>Últimos envíos</h2><button data-page="Historial">Ver historial</button></div>${historyTable(messages.slice(0,6))}</section>`;}
-function clientRows(search=''){return clients.filter(c=>(c.name+' '+c.phone).toLowerCase().includes(search.toLowerCase())).map(c=>`<tr><td><strong>${esc(c.name)}</strong></td><td>${esc(c.phone)}</td><td>${esc(c.birthday)}</td><td>${c.active?'Activo':'Pausado'} · ${c.whatsapp_consent?'Autorizado':'Sin consentimiento'}</td><td><div class="actions"><button data-edit="${c.id}">Editar</button><button data-toggle="${c.id}">${c.active?'Pausar':'Activar'}</button><button data-prepare="${c.id}" class="primary">Preparar felicitación</button><button data-delete="${c.id}">Eliminar</button></div></td></tr>`).join('')||'<tr><td colspan="5" class="empty">No hay clientes que mostrar.</td></tr>';}
-function clientsView(){return `<section class="panel"><div class="toolbar"><input id="search" aria-label="Buscar clientes" placeholder="Buscar nombre o teléfono"><div class="actions"><button id="import">Importar CSV</button><button id="add" class="primary">+ Añadir cliente</button></div></div><div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Teléfono</th><th>Cumpleaños</th><th>Permisos</th><th>Acciones</th></tr></thead><tbody id="clients-body">${clientRows()}</tbody></table></div></section>`;}
+function clientRows(search = '') {
+  const query = search.trim().toLowerCase();
+
+  const filtered = clients.filter(c =>
+    `${c.name} ${c.phone}`.toLowerCase().includes(query)
+  );
+
+  if (!filtered.length) {
+    return `
+      <tr class="empty-client-row">
+        <td colspan="5" class="empty">
+          No hay clientes que mostrar.
+        </td>
+      </tr>
+    `;
+  }
+
+  return filtered.map(c => {
+    const whatsappUrl = chatUrl(
+      c.phone,
+      '',
+      settings.default_country
+    );
+
+    return `
+      <tr class="client-row">
+        <td data-label="Nombre">
+          <strong>${esc(c.name)}</strong>
+        </td>
+
+        <td data-label="Teléfono">
+          <a
+            class="client-phone"
+            href="tel:${esc(c.phone)}"
+          >
+            ${esc(c.phone)}
+          </a>
+        </td>
+
+        <td data-label="Cumpleaños">
+          ${esc(c.birthday)}
+        </td>
+
+        <td data-label="Estado">
+          <span class="client-status">
+            ${c.active ? 'Activo' : 'Pausado'}
+          </span>
+
+          <span class="client-consent">
+            ${c.whatsapp_consent ? 'Autorizado' : 'Sin consentimiento'}
+          </span>
+        </td>
+
+        <td
+          data-label="Acciones"
+          class="client-actions-cell"
+        >
+          <div class="client-actions">
+            <a
+              class="button-link whatsapp-button"
+              href="${esc(whatsappUrl)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+
+            <button data-edit="${c.id}">
+              Editar
+            </button>
+
+            <button data-toggle="${c.id}">
+              ${c.active ? 'Pausar' : 'Activar'}
+            </button>
+
+            <button
+              data-prepare="${c.id}"
+              class="primary"
+            >
+              Preparar
+            </button>
+
+            <button
+              data-delete="${c.id}"
+              class="danger-action"
+            >
+              Eliminar
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+function clientsView() {
+  return `
+    <section class="panel clients-panel">
+      <div class="clients-toolbar">
+        <div class="client-search-wrap">
+          <input
+            id="search"
+            type="search"
+            autocomplete="off"
+            aria-label="Buscar clientes"
+            placeholder="Buscar nombre o teléfono"
+          >
+        </div>
+
+        <div class="clients-toolbar-actions">
+          <button id="import">
+            Importar CSV
+          </button>
+
+          <button
+            id="add"
+            class="primary"
+          >
+            + Añadir cliente
+          </button>
+        </div>
+      </div>
+
+      <div class="clients-summary">
+        ${clients.length} clientes
+      </div>
+
+      <div class="table-wrap clients-table-wrap">
+        <table class="clients-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Cumpleaños</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody id="clients-body">
+            ${clientRows()}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
 function design(){return `<div class="split"><section class="panel"><h2>Tu felicitación</h2><form id="design-form" class="form-grid"><label class="full">Texto principal<input name="greeting_text" maxlength="80" value="${esc(settings.greeting_text)}" required></label><p class="help full">Usa {{name}} para incluir el nombre del cliente. La fotografía y el logo pertenecen a tu negocio.</p><label class="full">Foto del propietario<input type="file" name="photo" accept="image/png,image/jpeg"></label><label class="full">Logo del negocio<input type="file" name="logo" accept="image/png,image/jpeg"></label><p class="help full">PNG o JPG, hasta 5 MB. Para la foto utiliza un retrato cuadrado.</p><button class="primary full">Guardar diseño</button></form></section><section class="panel"><h2>Vista previa</h2><label>Nombre de ejemplo<input id="example-name" value="Michael" maxlength="60"></label><p class="help">Composición aproximada. Usa «Vista previa de tarjeta» para descargar el PNG generado en el servidor.</p><div id="preview" class="preview-area"></div></section></div>`;}
 function config(){return `<section class="panel"><h2>Configuración del negocio</h2><form id="settings-form" class="form-grid">${field('Nombre del negocio','business_name',settings.business_name,'text','required maxlength="60"')}${field('Persona que felicita','owner_name',settings.owner_name,'text','required maxlength="60"')}${field('Zona horaria','timezone',settings.timezone,'text','required')}${field('País para teléfonos sin prefijo (US, MX, ES…)','default_country',settings.default_country,'text','required maxlength="2" pattern="[A-Z]{2}"')}<label class="full">Mensaje para WhatsApp<textarea name="whatsapp_message" maxlength="1024" required>${esc(settings.whatsapp_message)}</textarea></label><p class="help full">Usa {{name}} para incluir el nombre del cliente. Podrás revisar el texto antes de abrir el chat. Envía desde WhatsApp Business con el número +1 480 504 9855.</p><div class="full"><button class="primary">Guardar configuración</button></div></form></section>`;}
 function render(){const sections=['Dashboard','Clientes','Historial','Diseño de felicitación','Configuración'];app.innerHTML=`<div class="shell"><aside class="sidebar"><div class="brand"><b>✳</b> Celebrar</div><nav>${sections.map((name,i)=>`<button data-page="${name}" class="${page===name?'active':''}"><span aria-hidden="true">${['◫','○','↗','◇','⚙'][i]}</span> &nbsp;${name}</button>`).join('')}</nav><footer>${esc(settings.business_name)}<br>Un detalle que conecta.<br><button id="logout">Cerrar sesión</button></footer></aside><main class="workspace"><header class="topbar"><div><div class="eyebrow">${esc(settings.business_name)}</div><h1>${page}</h1></div><div class="actions"><button id="refresh">Actualizar</button><button id="test" class="primary">Vista previa de tarjeta</button><button id="logout-mobile" aria-label="Cerrar sesión">Salir</button></div></header><div class="status-line">${esc(settings.timezone)} · Envío manual con WhatsApp Business</div><section id="birthday-alerts" aria-label="Avisos de cumpleaños"></section>${page==='Dashboard'?dashboard():page==='Clientes'?clientsView():page==='Historial'?`<section class="panel"><div class="toolbar"><h2>Todos los envíos</h2><select id="history-filter" aria-label="Filtrar estado" style="max-width:240px"><option value="">Todos los estados</option>${Object.entries(labels).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><p class="help">Este historial conserva los intentos anteriores de la API. Los envíos manuales se comprueban en WhatsApp Business; preparar una tarjeta o abrir un chat no crea un registro de envío.</p><div id="history-table">${historyTable(messages)}</div></section>`:page==='Diseño de felicitación'?design():config()}</main></div>`;bind();}
