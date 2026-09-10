@@ -1,6 +1,6 @@
 import {syncAndroidBirthdays,clearAndroidBirthdays} from './android-bridge.js';
 import {createBirthdayAlerts} from './birthday-alerts.js';
-import {bindManualDialog,chatUrl} from './manual.js';
+import {bindManualDialog,directChatUrl} from './manual.js';
 import {createClient} from '@supabase/supabase-js';
 import Papa from 'papaparse';
 import {phoneE164,validBirthday,localDate,daysUntil} from './domain.js';
@@ -25,11 +25,7 @@ function today(){return localDate(new Date(),settings.timezone||'America/Phoenix
 function person(c, upcoming = false) {
   const days = daysUntil(c.birthday, today());
 
-  const whatsappUrl = chatUrl(
-    c.phone,
-    '',
-    settings.default_country
-  );
+  const whatsappUrl = directChatUrl(c.phone, settings.default_country);
 
   return `
     <div class="person birthday-person">
@@ -90,11 +86,7 @@ function clientRows(search = '') {
   }
 
   return filtered.map(c => {
-    const whatsappUrl = chatUrl(
-      c.phone,
-      '',
-      settings.default_country
-    );
+    const whatsappUrl = directChatUrl(c.phone, settings.default_country);
 
     return `
       <tr class="client-row">

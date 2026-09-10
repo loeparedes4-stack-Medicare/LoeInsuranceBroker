@@ -4,8 +4,11 @@ import {phoneE164} from './domain.js';
 export function personalMessage(template, name) {
   return String(template || 'Happy Birthday, {{name}}!').replaceAll('{{name}}', name);
 }
+export function directChatUrl(phone, country = 'US') {
+  return `https://wa.me/${phoneE164(phone, country).slice(1)}`;
+}
 export function chatUrl(phone, message, country = 'US') {
-  return `https://wa.me/${phoneE164(phone, country).slice(1)}?text=${encodeURIComponent(message)}`;
+  return `${directChatUrl(phone, country)}?text=${encodeURIComponent(message)}`;
 }
 
 // A prepared card is not evidence that the user sent it in WhatsApp.

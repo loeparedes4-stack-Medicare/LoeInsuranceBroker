@@ -909,20 +909,6 @@ a {
      Evita una tabla horizontal enorme.
      ===================================================== */
 
-  .table-wrap:has(#clients-body) {
-    overflow: visible;
-  }
-
-  .table-wrap table:has(#clients-body) {
-    display: block;
-
-    width: 100%;
-  }
-
-  .table-wrap table:has(#clients-body) thead {
-    display: none;
-  }
-
   #clients-body {
     display: grid;
 
@@ -1439,9 +1425,9 @@ canvas {
   }
 }
 
-/* MOBILE */
+/* MOBILE Y TABLETA VERTICAL */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   html,
   body,
   #app {
@@ -1461,6 +1447,7 @@ canvas {
     top: 0;
     z-index: 100;
     width: 100%;
+    height: auto;
     padding:
       max(10px, env(safe-area-inset-top))
       10px
@@ -1911,7 +1898,7 @@ canvas {
   }
 
   .clients-table .client-row td {
-    grid-template-columns: 78px minmax(0, 1fr);
+    grid-template-columns: 94px minmax(0, 1fr);
   }
 }
 
