@@ -1,7 +1,15 @@
 export const xml = value => String(value ?? '').replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));
-export function cardSvg(settings, name, photo='', logo='') {
- const title=(settings.greeting_text || 'Happy Birthday, {{name}}!').replaceAll('{{name}}', name);
- const words=title.split(/\s+/);const lines=[];let line='';for(const word of words){if((line+' '+word).length>25&&line){lines.push(line);line='';}line+=(line?' ':'')+word;}if(line)lines.push(line);
- const size=Math.min(68,Math.floor(860/Math.max(1,...lines.map(l=>l.length)) * 1.65),Math.floor(280/Math.max(1,lines.length)));
- return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080"><defs><clipPath id="portrait"><circle cx="540" cy="338" r="150"/></clipPath></defs><rect width="1080" height="1080" fill="#102c32"/><rect x="35" y="35" width="1010" height="1010" rx="12" fill="none" stroke="#bba571" stroke-width="2"/><path d="M100 160H350M730 160H980" stroke="#bba571" stroke-width="2"/>${logo?`<image x="450" y="65" width="180" height="110" preserveAspectRatio="xMidYMid meet" xlink:href="${xml(logo)}"/>`:''}<circle cx="540" cy="338" r="158" fill="#bba571"/>${photo?`<image x="390" y="188" width="300" height="300" preserveAspectRatio="xMidYMid slice" clip-path="url(#portrait)" xlink:href="${xml(photo)}"/>`:'<circle cx="540" cy="338" r="150" fill="#24464c"/>'}<g font-family="Inter" text-anchor="middle">${lines.map((l,i)=>`<text x="540" y="${560+i*Math.min(78,280/lines.length)}" font-size="${size}" fill="#fff">${xml(l)}</text>`).join('')}<path d="M445 855H635" stroke="#bba571"/><text x="540" y="918" font-size="28" fill="#dccca9">${xml(settings.owner_name)}</text><text x="540" y="970" font-size="24" fill="#fff">${xml(settings.business_name)}</text></g></svg>`;
+
+function nameLines(value) {
+ const clean=String(value||'').trim().replace(/!+$/,''),words=(clean+'!').split(/\s+/).filter(Boolean),lines=[];
+ for(const word of words){const current=lines.at(-1)||'';if(!current||current.length+1+word.length>15)lines.push(word);else lines[lines.length-1]=current+' '+word;}
+ if(lines.length>3)lines.splice(2,lines.length-2,lines.slice(2).join(' '));
+ return lines.length?lines:[''];
+}
+
+export function cardSvg(_settings, name, template='') {
+ const lines=nameLines(name),longest=Math.max(1,...lines.map(line=>line.length));
+ const size=Math.max(44,Math.min(lines.length===1?112:lines.length===2?82:60,Math.floor(900/longest)));
+ const gap=Math.round(size*1.02),startY=705-Math.round((lines.length-1)*gap/2);
+ return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1287" viewBox="0 0 1149 1369"><rect width="1149" height="1369" fill="#f6ead7"/>${template?`<image x="0" y="0" width="1149" height="1369" preserveAspectRatio="none" xlink:href="${xml(template)}"/>`:''}<g font-family="Inter" font-weight="700" text-anchor="middle" fill="#102746">${lines.map((line,index)=>`<text x="330" y="${startY+index*gap}" font-size="${size}" letter-spacing="-1">${xml(line)}</text>`).join('')}</g></svg>`;
 }
